@@ -1,0 +1,614 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Our Wedding | C & R</title>
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <audio id="bg-music" loop>
+      <source src="assets/music/celeste-tothapi.mp3" type="audio/mpeg" />
+      Your browser does not support the audio element.
+    </audio>
+
+    <div
+      id="music-control"
+      class="music-control"
+      aria-label="Toggle Background Music"
+    >
+      <span class="music-tooltip">Tap for music</span>
+      <div id="player-engine">
+        <svg id="vinyl-outline" viewBox="0 0 100 100" class="vinyl-svg">
+          <circle
+            cx="50"
+            cy="50"
+            r="45"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+          />
+          <circle
+            cx="50"
+            cy="50"
+            r="10"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+          />
+          <circle cx="50" cy="50" r="2" fill="currentColor" />
+        </svg>
+
+        <svg id="needle-line" viewBox="0 0 100 100" class="needle-svg">
+          <line
+            x1="80"
+            y1="20"
+            x2="80"
+            y2="50"
+            stroke="currentColor"
+            stroke-width="2.5"
+            stroke-linecap="round"
+          />
+          <line
+            x1="80"
+            y1="50"
+            x2="60"
+            y2="70"
+            stroke="currentColor"
+            stroke-width="2.5"
+            stroke-linecap="round"
+          />
+        </svg>
+
+        <svg id="notes-container" viewBox="0 0 100 100" class="notes-svg">
+          <path
+            class="note note-1"
+            d="M30,30 L30,20 L35,20 L35,30 M30,22 L35,22"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.5"
+          />
+          <path
+            class="note note-2"
+            d="M15,50 L15,40 L20,40 L20,50 M15,42 L20,42"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.5"
+          />
+          <path
+            class="note note-3"
+            d="M40,70 L40,60 L45,60 L45,70 M40,62 L45,62"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.5"
+          />
+        </svg>
+      </div>
+    </div>
+    <nav>
+      <div class="nav-content">
+        <div class="logo">C & R</div>
+
+        <div class="menu-toggle" id="mobile-menu">
+          <span class="bar"></span>
+          <span class="bar"></span>
+          <span class="bar"></span>
+        </div>
+
+        <div class="nav-links" id="nav-list">
+          <a href="#home">Home</a>
+          <a href="#story">Our Story</a>
+          <a href="#details">Details</a>
+          <a href="#rsvp">RSVP</a>
+          <a href="#faq">FAQ</a>
+        </div>
+      </div>
+    </nav>
+
+    <main>
+      <section id="home" class="hero-section">
+        <div class="hero-content">
+          <p class="subtitle">WE ARE GETTING MARRIED</p>
+          <h1>C & R</h1>
+          <p class="date">01 . 04 . 2027</p>
+          <div class="scroll-indicator">↓</div>
+        </div>
+      </section>
+
+      <section id="timer-bridge" class="timer-section">
+        <div class="container">
+          <p class="timer-label">Counting down to January 4, 2027</p>
+
+          <div id="countdown" class="countdown-ribbon">
+            <div class="time-unit">
+              <span id="days">00</span>
+              <label>Days</label>
+            </div>
+            <div class="timer-divider">/</div>
+            <div class="time-unit">
+              <span id="hours">00</span>
+              <label>Hours</label>
+            </div>
+            <div class="timer-divider">/</div>
+            <div class="time-unit">
+              <span id="minutes">00</span>
+              <label>Minutes</label>
+            </div>
+            <div class="timer-divider">/</div>
+            <div class="time-unit">
+              <span id="seconds">00</span>
+              <label>Seconds</label>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="story">
+        <div class="container">
+          <h2 class="editorial-title">Our Story</h2>
+
+          <section class="image-break-section">
+            <div class="container-wide">
+              <div class="story-large-image">
+                <img
+                  src="assets/images/our-story.jpg"
+                  alt="CJ and Reginwell Story Highlight"
+                  loading="lazy"
+                />
+              </div>
+            </div>
+          </section>
+
+          <div class="story-content">
+            <div class="story-text">
+              <p class="author-tag">BY REGINWELL</p>
+              <h3>How We Met</h3>
+
+              <p class="story-paragraph">
+                <span class="drop-cap">D</span>uring our college days, fate
+                brought us together through music. I was in my second year, and
+                CJ was in his first when we both joined an organization called
+                <strong>Band Republic</strong> — a community of passionate
+                musicians.
+              </p>
+
+              <p class="story-paragraph">
+                At the time, we were preparing to compete in a Battle of the
+                Bands and urgently needed a bassist. CJ stepped in to fill the
+                role. But somewhere between rehearsals and harmonies, the
+                extrovert and the introvert found their rhythm.
+              </p>
+
+              <div class="highlight-quote">
+                "Who knew that audition would lead us to forever?"
+              </div>
+
+              <p class="story-paragraph">
+                As time went by, rehearsals turned into conversations. I was
+                loud; He was quiet. I loved the spotlight; He preferred the
+                background. Somewhere between band practices and shared moments,
+                we grew closer without even realizing it.
+              </p>
+
+              <p class="story-paragraph italic">
+                If I’m being honest… I think I liked him first. But I wasn’t so
+                sure he liked me back. I told myself: "I will NOT message him
+                for the whole day. If he doesn’t message me, I’ll stop waiting."
+              </p>
+
+              <p class="story-paragraph">
+                I waited. And waited. He didn’t message me... not until exactly
+                before midnight. His message?
+                <em
+                  >“Sorry for not messaging you the whole day. I was busy with
+                  my homework.”</em
+                >
+              </p>
+
+              <p class="story-paragraph">
+                After months of getting to know each other, we finally made it
+                official on
+                <strong>January 4, 2017</strong>.
+              </p>
+            </div>
+
+            <div class="story-image">
+              <div class="image-wrapper">
+                <img
+                  src="https://picsum.photos/500/700"
+                  alt="Reginwell and CJ"
+                />
+                <p class="caption">Established 2017</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="proposal">
+        <div class="container">
+          <h2 class="editorial-title">The Proposal</h2>
+
+          <div class="proposal-content">
+            <div class="proposal-text">
+              <p class="proposal-lead">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do
+                eiusmod tempor incididunt ut labore et dolore magna aliqua.
+              </p>
+
+              <p class="proposal-paragraph">
+                Ut enim ad minim veniam, quis nostrud exercitation ullamco
+                laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure
+                dolor in reprehenderit in voluptate velit esse cillum dolore eu
+                fugiat nulla pariatur.
+              </p>
+
+              <div class="proposal-highlight">
+                "Excepteur sint occaecat cupidatat non proident, sunt in culpa
+                qui officia deserunt mollit anim id est laborum."
+              </div>
+
+              <p class="proposal-paragraph">
+                Sed ut perspiciatis unde omnis iste natus error sit voluptatem
+                accusantium doloremque laudantium, totam rem aperiam, eaque ipsa
+                quae ab illo inventore veritatis et quasi architecto beatae
+                vitae dicta sunt explicabo.
+              </p>
+            </div>
+
+            <div class="proposal-image">
+              <div class="image-wrapper centered-frame">
+                <img src="assets/images/proposal-1.png" alt="The Proposal" />
+                <p class="caption">The easiest 'Yes' — Location, Date</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="details" class="details-section">
+        <div class="container-narrow">
+          <h2 class="editorial-title">Wedding Details</h2>
+
+          <div class="accordion-container">
+            <details class="detail-item">
+              <summary>
+                The Ceremony <span class="accordion-icon">+</span>
+              </summary>
+              <div class="detail-content">
+                <div class="detail-inner">
+                  <img
+                    src="assets/images/ceremony/garden-1.jpg"
+                    alt="The Garden at Fruella"
+                    class="detail-img"
+                  />
+                  <div class="detail-text">
+                    <h3>4:00 PM | The Garden at Fruella</h3>
+                    <p class="protocol-note">
+                      Guests are respectfully requested to arrive fifteen (15)
+                      minutes before the ceremony begins.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </details>
+
+            <details class="detail-item">
+              <summary>
+                The Reception <span class="accordion-icon">+</span>
+              </summary>
+              <div class="detail-content">
+                <div class="image-grid">
+                  <img
+                    src="assets/images/reception/entrance-1.jpg"
+                    alt="Reception Entrance"
+                  />
+                  <img
+                    src="assets/images/reception/drop-off-1.jpg"
+                    alt="Reception Drop-off"
+                  />
+                </div>
+                <div class="detail-text">
+                  <h3>6:00 PM | The Pavillion at Fruella</h3>
+                  <p class="protocol-note">
+                    Kindly note that parking is provided on-site for a maximum
+                    of twenty-six (26) vehicles.
+                  </p>
+                </div>
+              </div>
+            </details>
+
+            <details class="detail-item">
+              <summary>
+                The Event Timeline <span class="accordion-icon">+</span>
+              </summary>
+              <div class="detail-content portrait-mode">
+                <img
+                  src="assets/images/timeline/timeline-1.png"
+                  alt="Wedding Timeline"
+                  class="portrait-graphic"
+                />
+              </div>
+            </details>
+
+            <details class="detail-item">
+              <summary>
+                The Entourage <span class="accordion-icon">+</span>
+              </summary>
+              <div class="detail-content">
+                <div class="image-grid portrait-grid">
+                  <img
+                    src="assets/images/entourage/entourage-1.png"
+                    alt="The Entourage Part 1"
+                  />
+                  <img
+                    src="assets/images/entourage/entourage-2.png"
+                    alt="The Entourage Part 2"
+                  />
+                </div>
+              </div>
+            </details>
+
+            <details class="detail-item">
+              <summary>
+                The Attire <span class="accordion-icon">+</span>
+              </summary>
+              <div class="detail-content portrait-mode">
+                <img
+                  src="assets/images/attire/attire-1.png"
+                  alt="Wedding Attire"
+                  class="portrait-graphic"
+                />
+                <div class="detail-text">
+                  <p class="protocol-note">
+                    We respectfully request that guests refrain from wearing
+                    jeans. We truly appreciate your understanding and gracious
+                    participation.
+                  </p>
+                </div>
+              </div>
+            </details>
+          </div>
+
+          <div class="location-guide">
+            <h2 class="section-title-small">Location Guide</h2>
+            <div class="map-wrapper">
+              <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3869.056109633874!2d120.92892771157386!3d14.132797886242852!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x33bd796d1fd7f119%3A0x5fccd52277bc6f1!2sFruella&#39;s%20Events%20Venue%20Tagaytay!5e0!3m2!1sen!2sph!4v1775618401919!5m2!1sen!2sph"
+                width="100%"
+                height="450"
+                style="border: 0"
+                allowfullscreen=""
+                loading="lazy"
+              ></iframe>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="rsvp" class="rsvp-section">
+        <div class="container-narrow">
+          <div class="rsvp-header">
+            <h2 class="editorial-title">
+              RSVP <br /><span class="french-heading"
+                >Répondez S’il Vous Plaît</span
+              >
+            </h2>
+          </div>
+
+          <div class="rsvp-content">
+            <div class="rsvp-image-wrapper">
+              <img
+                src="assets/us-rsvp.jpg"
+                alt="The Couple"
+                class="rsvp-main-img"
+              />
+            </div>
+
+            <div class="rsvp-text-container">
+              <p class="rsvp-intro">
+                Your response will help us finalize the details of our
+                celebration. We would be delighted to celebrate with you.
+                <strong
+                  >Please kindly confirm your attendance by November 27, 2026,
+                  Friday.</strong
+                >
+              </p>
+
+              <div class="rsvp-policy-box">
+                <p>
+                  To help us ensure a smooth and intimate event, we respectfully
+                  ask that this invitation be limited to the named guest only
+                  (no plus one). We also kindly request that the event details
+                  and website remain private and not be shared with others.
+                </p>
+              </div>
+
+              <p class="rsvp-thanks">
+                Thank you for your understanding, and we look forward to
+                celebrating with you.
+              </p>
+
+              <a
+                href="YOUR_GOOGLE_FORMS_LINK_HERE"
+                target="_blank"
+                class="btn-rsvp"
+              >
+                Click Here to RSVP
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="faq" class="faq-section">
+        <div class="container-narrow">
+          <h2 class="editorial-title">Frequently Asked Questions</h2>
+
+          <div class="accordion-container">
+            <details class="detail-item">
+              <summary>
+                What time do I need to arrive?
+                <span class="accordion-icon">+</span>
+              </summary>
+              <div class="detail-content">
+                <div class="detail-inner">
+                  <p class="faq-text">
+                    The entourage procession will strictly start at
+                    <strong>4:00 PM</strong>. Please arrive at least thirty (30)
+                    minutes early to allow for traffic. As tradition goes, the
+                    Bride will be the last to arrive.
+                  </p>
+                </div>
+              </div>
+            </details>
+
+            <details class="detail-item">
+              <summary>
+                What time will the program start?
+                <span class="accordion-icon">+</span>
+              </summary>
+              <div class="detail-content">
+                <div class="detail-inner">
+                  <p class="faq-text">
+                    There will be a pre-program at 5:00 PM with appetizers and
+                    refreshments. The main program will start promptly at 6:00
+                    PM.
+                  </p>
+                </div>
+              </div>
+            </details>
+
+            <details class="detail-item">
+              <summary>
+                Can I bring a guest / date?
+                <span class="accordion-icon">+</span>
+              </summary>
+              <div class="detail-content">
+                <div class="detail-inner">
+                  <p class="faq-text">
+                    We regret to inform you that we are unable to accommodate
+                    additional guests. Each seat has been thoughtfully assigned
+                    to a specific guest on our list.
+                  </p>
+                </div>
+              </div>
+            </details>
+
+            <details class="detail-item">
+              <summary>
+                What should I wear? <span class="accordion-icon">+</span>
+              </summary>
+              <div class="detail-content">
+                <div class="detail-inner">
+                  <p class="faq-text">
+                    The dress code is <strong>Semi-Formal to Casual</strong>.
+                    Kindly refer to the color palette in the Details section. We
+                    respectfully request NO jeans, slippers, or white attire.
+                  </p>
+                </div>
+              </div>
+            </details>
+
+            <details class="detail-item">
+              <summary>
+                Are kids allowed? <span class="accordion-icon">+</span>
+              </summary>
+              <div class="detail-content">
+                <div class="detail-inner">
+                  <p class="faq-text">
+                    Only children who are part of the entourage are in
+                    attendance. We are unable to accommodate other children at
+                    our celebration.
+                  </p>
+                </div>
+              </div>
+            </details>
+
+            <details class="detail-item">
+              <summary>
+                Can we take photos/videos? <span class="accordion-icon">+</span>
+              </summary>
+              <div class="detail-content">
+                <div class="detail-inner">
+                  <p class="faq-text">
+                    Please keep our ceremony <strong>CAMERA-FREE</strong>. We
+                    have a professional team for this. Once we finish our first
+                    kiss, you are free to take shots at the reception!
+                  </p>
+                </div>
+              </div>
+            </details>
+
+            <details class="detail-item">
+              <summary>
+                Can we sit anywhere? <span class="accordion-icon">+</span>
+              </summary>
+              <div class="detail-content">
+                <div class="detail-inner">
+                  <p class="faq-text">
+                    We have a carefully arranged seating plan. Our coordinator
+                    will assist you in finding your designated seat upon
+                    arrival.
+                  </p>
+                </div>
+              </div>
+            </details>
+
+            <details class="detail-item">
+              <summary>
+                Do you have a gift preference?
+                <span class="accordion-icon">+</span>
+              </summary>
+              <div class="detail-content">
+                <div class="detail-inner">
+                  <p class="faq-text">
+                    Your presence is the greatest gift. Should you wish to give
+                    something more, a cash gift would be honored as we save for
+                    our future together.
+                  </p>
+                </div>
+              </div>
+            </details>
+
+            <details class="detail-item">
+              <summary>
+                RSVP Deadlines & Late Responses
+                <span class="accordion-icon">+</span>
+              </summary>
+              <div class="detail-content">
+                <div class="detail-inner">
+                  <p class="faq-text">
+                    The latest we can accept responses is
+                    <strong>November 27, 2026</strong>. If we do not receive
+                    your RSVP by this date, we will be unable to accommodate
+                    your attendance as final counts must be submitted to the
+                    venue.
+                  </p>
+                </div>
+              </div>
+            </details>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <script src="script.js"></script>
+    <footer class="site-footer">
+      <div class="container-narrow">
+        <div class="footer-content">
+          <p class="footer-initials">Reginwell & CJ</p>
+          <p class="footer-date">January 04, 2027</p>
+          <div class="footer-divider"></div>
+          <p class="footer-credit">Love love love</p>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>
