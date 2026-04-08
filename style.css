@@ -117,7 +117,40 @@ nav {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 15px 5%;
+  padding: 10px 5%; /* Reduced top/bottom padding slightly if logo is tall */
+}
+
+/* ==========================================
+   HEADER LOGO OPTIMIZATION
+   ========================================== */
+
+.logo-link {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+}
+
+.nav-logo {
+  height: 60px;
+  width: auto;
+  /* Adds a hint to the browser to keep edges sharp */
+  image-rendering: -webkit-optimize-contrast;
+  image-rendering: crisp-edges;
+
+  /* Ensure it's not being squashed by a hidden width */
+  object-fit: contain;
+}
+
+.nav-logo:hover {
+  transform: scale(1.05);
+  filter: grayscale(0);
+}
+
+/* Mobile Tweak: Make it slightly smaller on phones */
+@media (max-width: 768px) {
+  .nav-logo {
+    height: 45px;
+  }
 }
 
 .logo {
@@ -265,9 +298,11 @@ nav {
 .hero-section {
   height: 100vh;
   text-align: center;
-  background:
-    linear-gradient(rgba(255, 255, 255, 0.6), rgba(255, 255, 255, 0.6)),
-    url("your-engagement-photo.jpg") no-repeat center center/cover;
+  background: linear-gradient(
+    rgba(255, 255, 255, 0.6),
+    rgba(255, 255, 255, 0.6)
+  );
+  /*url("assets/images/wedding_favicon.png") no-repeat center center/cover; */
 }
 
 .subtitle {
@@ -868,6 +903,29 @@ nav {
 }
 .map-wrapper:hover {
   filter: grayscale(0);
+}
+
+/* ==========================================
+   RSVP IMAGE CONSTRAINTS
+   ========================================== */
+
+/* The Container (The Bounding Box) */
+.rsvp-image-wrapper {
+  width: 100%;
+  max-width: 500px; /* Adjust this to 400px if you want it even smaller */
+  margin: 0 auto; /* Centering */
+  padding: 15px; /* Optional: creates a "Polaroid" frame effect */
+  background: #fff;
+  border: 1px solid var(--border-light);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.05);
+}
+
+/* The Image Itself (Responsive logic) */
+.rsvp-main-img {
+  width: 100%; /* Fills 100% of the 500px wrapper, not 100% of the screen */
+  height: auto; /* Maintains aspect ratio (no squishing) */
+  display: block; /* Removes the weird bottom gap images sometimes have */
+  border-radius: 2px;
 }
 
 /* ==========================================================================
