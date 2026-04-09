@@ -86,8 +86,8 @@ document.addEventListener(
   () => {
     if (!isPlaying) {
       // bgMusic.play(); // Uncomment this if you want it to start on first scroll/click
-      // isPlaying = true;
-      // musicStatus.innerText = "Pause Music";
+      isPlaying = true;
+      musicStatus.innerText = "Pause Music";
     }
   },
   { once: true },
@@ -229,4 +229,48 @@ window.addEventListener("scroll", () => {
       link.classList.add("active-link");
     }
   });
+});
+
+// ==========================================
+// RSVP
+// ==========================================
+const scriptURL =
+  "https://script.google.com/macros/s/AKfycbxJe-Usnh3DwLf264hvxhQfNf0iQ2482Y46Pgq5u-7lLDiDyBfXTb0u9L96ozthgiUIHQ/exec";
+const form = document.querySelector("#rsvp-form");
+const btn = document.querySelector("#submit-btn");
+const msg = document.querySelector("#form-message");
+
+form.addEventListener("submit", (e) => {
+  e.preventDefault();
+  btn.disabled = true;
+  btn.innerHTML = "Sending..."; // QA Note: Feedback for the user
+
+  fetch(scriptURL, { method: "POST", body: new FormData(form) })
+    .then((response) => {
+      // 1. Start the fade out
+      form.style.transition = "opacity 0.4s ease"; // Ensure CSS transition is active
+      form.style.opacity = "0";
+
+      setTimeout(() => {
+        // 2. Hide the form completely after fade
+        form.style.display = "none";
+
+        // 3. Setup the Success Message
+        msg.innerHTML = "Thank you! Your RSVP has been recorded.";
+        msg.style.display = "block";
+        msg.classList.add("fade-in");
+
+        // 4. Reset states in the background
+        btn.disabled = false;
+        btn.innerHTML = "Confirm RSVP";
+        form.reset();
+      }, 400);
+    })
+    .catch((error) => {
+      // Crucial: Re-enable button if the network fails so they can try again
+      btn.disabled = false;
+      btn.innerHTML = "Confirm RSVP";
+      console.error("Error!", error.message);
+      alert("Maaf, something went wrong. Please try again!");
+    });
 });

@@ -100,6 +100,29 @@ section {
   opacity: 1;
   transform: translateY(0);
 }
+
+.location-guide {
+  margin-top: 80px; /* Adjust this: 60px to 100px is usually the sweet spot */
+  padding-top: 20px; /* Optional: adds a bit of internal breathing room */
+}
+
+/* For mobile, we usually scale the gap down slightly */
+@media (max-width: 768px) {
+  .location-guide {
+    margin-top: 50px;
+  }
+}
+
+.section-title-small {
+  margin-bottom: 30px; /* Space between the title and the map itself */
+  text-align: center; /* Keeps it consistent with a minimalist layout */
+}
+
+.map-wrapper {
+  border-radius: 12px; /* Adds a premium feel */
+  overflow: hidden; /* Ensures the iframe follows the border radius */
+  border: 1px solid var(--border-light); /* Subtile border like your EDC gear */
+}
 /* ==========================================================================
    4. NAVIGATION (Sticky Header)
    ========================================================================== */
@@ -640,10 +663,11 @@ nav {
     font-size: 1rem;
   }
 }
-
 /* ==========================================================================
    10. MUSIC CONTROL (The Minimalist Vinyl UI)
    ========================================================================== */
+
+/* Main Toggle Container */
 .music-control {
   position: fixed;
   bottom: 30px;
@@ -670,6 +694,26 @@ nav {
   transform: scale(1.05);
 }
 
+/* Tooltip (Hidden by default, shown on hover) */
+.music-tooltip {
+  position: absolute;
+  right: 70px;
+  background: var(--deep-accent);
+  color: white;
+  padding: 5px 12px;
+  border-radius: 4px;
+  font-size: 0.75rem;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+.music-control:hover .music-tooltip {
+  opacity: 1;
+}
+
+/* Internal Player Engine Wrapper */
 #player-engine {
   position: relative;
   width: 40px;
@@ -677,7 +721,8 @@ nav {
 }
 
 .vinyl-svg,
-.needle-svg {
+.needle-svg,
+.notes-svg {
   position: absolute;
   top: 0;
   left: 0;
@@ -685,9 +730,84 @@ nav {
   height: 100%;
 }
 
+/* NEEDLE LOGIC
+   The needle is anchored at the top right (80% 20%) 
+*/
 .needle-svg {
   transform-origin: 80% 20%;
   transition: transform 0.6s var(--transition-smooth);
+}
+
+/* ACTIVE STATE (.playing) 
+   These trigger when JavaScript adds the .playing class
+*/
+
+/* 1. Drop the needle onto the record */
+.music-control.playing .needle-svg {
+  transform: rotate(20deg);
+}
+
+/* 2. Spin the vinyl outline */
+.music-control.playing .vinyl-svg {
+  animation: spin-vinyl 3s linear infinite;
+}
+
+/* 3. Animate the music notes */
+.music-control.playing .note {
+  animation: float-note 2.5s infinite ease-out;
+}
+
+/* Delay notes so they don't all fly at once */
+.music-control.playing .note-1 {
+  animation-delay: 0s;
+}
+.music-control.playing .note-2 {
+  animation-delay: 0.8s;
+}
+.music-control.playing .note-3 {
+  animation-delay: 1.6s;
+}
+
+/* ==========================================================================
+   ANIMATIONS & KEYFRAMES
+   ========================================================================== */
+
+/* The Vinyl Spin */
+@keyframes spin-vinyl {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* The Note Flight (Floating away) */
+@keyframes float-note {
+  0% {
+    transform: translate(0, 0) scale(0.5) rotate(0deg);
+    opacity: 0;
+  }
+  20% {
+    opacity: 1;
+  }
+  100% {
+    transform: translate(-30px, -60px) scale(1.5) rotate(-20deg);
+    opacity: 0;
+  }
+}
+
+/* Note Base State: Hidden */
+.note {
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+/* Color Sync for Corporate Minimalist Aesthetic */
+.vinyl-svg circle,
+.needle-svg line,
+.notes-svg path {
+  stroke: currentColor;
 }
 
 /* ==========================================
@@ -927,7 +1047,6 @@ nav {
   display: block; /* Removes the weird bottom gap images sometimes have */
   border-radius: 2px;
 }
-
 /* ==========================================================================
    13. RSVP SECTION
    ========================================================================== */
@@ -935,6 +1054,14 @@ nav {
   padding: 120px 0;
   text-align: center;
 }
+
+.rsvp-text-container {
+  max-width: 500px;
+  margin: 0 auto;
+  text-align: center;
+  padding: 0 20px;
+}
+
 .french-heading {
   display: block;
   font-size: 0.9rem;
@@ -944,33 +1071,203 @@ nav {
   margin-bottom: 10px;
 }
 
-.rsvp-policy-box {
-  padding: 30px;
-  border-block: 1px solid var(--border-light);
-  margin: 30px 0;
-  font-size: 14px;
+.rsvp-intro {
+  font-size: 1rem;
+  line-height: 1.6;
   color: var(--text-muted);
-  font-style: italic;
+  margin-bottom: 20px;
 }
 
-.btn-rsvp {
+/* Deadline Highlight Badge */
+.deadline-badge {
   display: inline-block;
-  padding: 20px 45px;
+  padding: 12px 25px;
+  border-top: 1px solid var(--border-light);
+  border-bottom: 1px solid var(--border-light);
+  margin-bottom: 35px;
+}
+
+.deadline-label {
+  display: block;
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: var(--text-muted);
+  margin-bottom: 4px;
+}
+
+.deadline-date {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--deep-accent);
+}
+
+/* Privacy & Policy Card (Replaces rsvp-policy-box) */
+.rsvp-policy-card {
+  background: var(--bg-light, #f9f9f9);
+  padding: 20px;
+  border-radius: 10px;
+  margin-bottom: 30px;
+  text-align: left;
+  border: 1px solid var(--border-light);
+}
+
+.policy-item {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 10px;
+}
+
+.policy-item:last-child {
+  margin-bottom: 0;
+}
+
+.policy-icon {
+  color: var(--deep-accent);
+  font-size: 0.8rem;
+  margin-top: 2px;
+}
+
+.policy-item p {
+  font-size: 0.85rem;
+  line-height: 1.5;
+  margin: 0;
+  color: var(--text-dark);
+}
+
+.rsvp-thanks {
+  font-style: italic;
+  font-size: 0.95rem;
+  color: var(--text-muted);
+  margin-bottom: 50px;
+}
+
+/* Form Layout */
+.custom-rsvp-form {
+  text-align: left;
+}
+
+.form-group {
+  margin-bottom: 25px;
+}
+
+.form-label {
+  display: block;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 10px;
+  color: var(--text-muted);
+}
+
+/* Inputs & Textarea */
+.form-input {
+  width: 100%;
+  padding: 15px;
+  background: #fff;
+  border: 1px solid var(--border-light);
+  border-radius: 8px;
+  font-size: 1rem;
+  font-family: inherit;
+  transition: var(--transition-smooth);
+}
+
+.form-input:focus {
+  outline: none;
+  border-color: var(--deep-accent);
+  box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.05);
+}
+
+.form-textarea {
+  min-height: 120px;
+  resize: vertical;
+}
+
+/* Attendance Toggle (Segmented Control) */
+.attendance-options {
+  display: flex;
+  gap: 12px;
+}
+
+.option-card {
+  flex: 1;
+  cursor: pointer;
+  position: relative;
+}
+
+.option-card input {
+  position: absolute;
+  opacity: 0;
+}
+
+.card-content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 54px; /* Matches input height */
+  background: var(--bg-light, #f8f9fa);
+  border: 1px solid var(--border-light);
+  border-radius: 8px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.option-card:hover .card-content {
+  border-color: var(--deep-accent);
+}
+
+.option-card input:checked + .card-content {
+  background-color: var(--deep-accent);
+  color: #ffffff;
+  border-color: var(--deep-accent);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* Primary Submit Button */
+.btn-rsvp-submit {
+  display: block;
+  width: 100%;
+  padding: 20px;
   background: var(--deep-accent);
   color: #fff;
-  text-decoration: none;
+  border: none;
   text-transform: uppercase;
-  letter-spacing: 3px;
-  font-family: var(--font-heading);
-  font-size: 0.8rem;
-  border-radius: 2px;
+  letter-spacing: 2px;
+  font-weight: 600;
+  font-size: 0.85rem;
+  border-radius: 8px;
+  cursor: pointer;
   transition: var(--transition-smooth);
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
 }
 
-.btn-rsvp:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+.btn-rsvp-submit:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+  opacity: 0.95;
+}
+
+/* Form Status Message */
+.form-status-msg {
+  margin-top: 20px;
+  padding: 15px;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  background: #f0fdf4;
+  color: #166534;
+  border: 1px solid #bbf7d0;
+}
+
+/* Responsive Tweak */
+@media (max-width: 480px) {
+  .attendance-options {
+    flex-direction: column;
+  }
+  .rsvp-section {
+    padding: 80px 0;
+  }
 }
 
 /* ==========================================================================

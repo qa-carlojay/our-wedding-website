@@ -403,9 +403,8 @@
         <div class="container-narrow">
           <div class="rsvp-header">
             <h2 class="editorial-title">
-              RSVP <br /><span class="french-heading"
-                >Répondez S’il Vous Plaît</span
-              >
+              RSVP <br />
+              <span class="french-heading">Répondez S’il Vous Plaît</span>
             </h2>
           </div>
 
@@ -419,36 +418,89 @@
             </div>
 
             <div class="rsvp-text-container">
-              <p class="rsvp-intro">
-                Your response will help us finalize the details of our
-                celebration. We would be delighted to celebrate with you.
-                <strong
-                  >Please kindly confirm your attendance by November 27, 2026,
-                  Friday.</strong
-                >
-              </p>
-
-              <div class="rsvp-policy-box">
-                <p>
-                  To help us ensure a smooth and intimate event, we respectfully
-                  ask that this invitation be limited to the named guest only
-                  (no plus one). We also kindly request that the event details
-                  and website remain private and not be shared with others.
+              <div class="rsvp-header">
+                <p class="rsvp-intro">
+                  Your response will help us finalize the details of our
+                  celebration. We would be delighted to celebrate with you.
                 </p>
+                <div class="deadline-badge">
+                  <span class="deadline-label">Please RSVP by</span>
+                  <span class="deadline-date">November 27, 2026</span>
+                </div>
+              </div>
+
+              <div class="rsvp-policy-card">
+                <div class="policy-item">
+                  <span class="policy-icon">✦</span>
+                  <p>
+                    Invitation is limited to the named guest only (no plus one).
+                  </p>
+                </div>
+                <div class="policy-item">
+                  <span class="policy-icon">✦</span>
+                  <p>
+                    We kindly request that event details and website remain
+                    private.
+                  </p>
+                </div>
               </div>
 
               <p class="rsvp-thanks">
-                Thank you for your understanding, and we look forward to
-                celebrating with you.
+                Thank you for your understanding. We look forward to seeing you!
               </p>
 
-              <a
-                href="YOUR_GOOGLE_FORMS_LINK_HERE"
-                target="_blank"
-                class="btn-rsvp"
-              >
-                Click Here to RSVP
-              </a>
+              <form id="rsvp-form" class="custom-rsvp-form">
+                <div class="form-group">
+                  <label class="form-label" for="full-name">Full Name</label>
+                  <input
+                    id="full-name"
+                    type="text"
+                    name="Full Name"
+                    placeholder="e.g. Juan Dela Cruz"
+                    required
+                    class="form-input"
+                  />
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label">Will you attend?</label>
+                  <div class="attendance-options">
+                    <label class="option-card">
+                      <input
+                        type="radio"
+                        name="Attendance"
+                        value="Yes"
+                        required
+                      />
+                      <span class="card-content">Joyfully Attend</span>
+                    </label>
+                    <label class="option-card">
+                      <input type="radio" name="Attendance" value="No" />
+                      <span class="card-content">Regretfully Decline</span>
+                    </label>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label" for="notes">Notes & Requests</label>
+                  <textarea
+                    id="notes"
+                    name="Notes"
+                    placeholder="Dietary restrictions, song requests, or a message..."
+                    class="form-input form-textarea"
+                  ></textarea>
+                </div>
+
+                <button type="submit" id="submit-btn" class="btn-rsvp-submit">
+                  Confirm RSVP
+                </button>
+              </form>
+
+              <div
+                id="form-message"
+                class="form-status-msg"
+                style="display: none"
+              ></div>
             </div>
           </div>
         </div>
@@ -605,8 +657,6 @@
         </div>
       </section>
     </main>
-
-    <script src="script.js"></script>
     <footer class="site-footer">
       <div class="container-narrow">
         <div class="footer-content">
@@ -617,5 +667,6 @@
         </div>
       </div>
     </footer>
+    <script src="script.js"></script>
   </body>
 </html>
