@@ -36,6 +36,9 @@
         color: var(--text);
         background: var(--bg);
         line-height: 1.65;
+        background-image:
+          radial-gradient(circle at 8% 14%, #fff7f2 0%, transparent 30%),
+          radial-gradient(circle at 92% 84%, #f3e7e0 0%, transparent 32%);
       }
 
       img {
@@ -151,9 +154,22 @@
         position: absolute;
         inset: 0;
         background:
-          linear-gradient(rgba(18, 16, 16, 0.35), rgba(18, 16, 16, 0.45)),
+          linear-gradient(rgba(18, 16, 16, 0.42), rgba(18, 16, 16, 0.58)),
           url("assets/images/our-story-1.jpg") center / cover;
-        transform: scale(1.06);
+        transform: scale(1.09);
+      }
+
+      .hero::after {
+        content: "";
+        position: absolute;
+        inset: -10%;
+        background:
+          radial-gradient(circle at 22% 24%, #f0c9b744, transparent 30%),
+          radial-gradient(circle at 74% 36%, #ffffff22, transparent 34%),
+          radial-gradient(circle at 40% 76%, #bd8f7940, transparent 26%);
+        mix-blend-mode: screen;
+        animation: driftGlow 16s ease-in-out infinite alternate;
+        pointer-events: none;
       }
 
       .hero-layer {
@@ -171,6 +187,30 @@
         text-align: center;
         padding-top: 5rem;
       }
+
+      .hero-particles {
+        position: absolute;
+        inset: 0;
+        pointer-events: none;
+      }
+
+      .hero-particles span {
+        position: absolute;
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: #ffffff9c;
+        box-shadow: 0 0 12px #ffffff80;
+        animation: floatParticle 14s linear infinite;
+      }
+
+      .hero-particles span:nth-child(1) { left: 14%; top: 72%; animation-delay: 0s; }
+      .hero-particles span:nth-child(2) { left: 24%; top: 22%; animation-delay: 2.1s; }
+      .hero-particles span:nth-child(3) { left: 38%; top: 68%; animation-delay: 4s; }
+      .hero-particles span:nth-child(4) { left: 52%; top: 28%; animation-delay: 1.2s; }
+      .hero-particles span:nth-child(5) { left: 66%; top: 58%; animation-delay: 3.4s; }
+      .hero-particles span:nth-child(6) { left: 78%; top: 18%; animation-delay: 5.6s; }
+      .hero-particles span:nth-child(7) { left: 86%; top: 64%; animation-delay: 6.5s; }
 
       .hero-glass {
         margin: 1.2rem auto 0;
@@ -208,6 +248,8 @@
         margin-top: 1rem;
         font-family: "Playfair Display", serif;
         font-size: clamp(2.6rem, 8vw, 5.8rem);
+        text-shadow: 0 10px 26px #00000080;
+        letter-spacing: 0.03em;
       }
 
       .hero-date {
@@ -223,6 +265,12 @@
         border: 1px solid #ffffffaa;
         border-radius: 999px;
         padding: 0.72rem 1.2rem;
+        transition: transform 0.3s ease, background 0.3s ease;
+      }
+
+      .hero-cta:hover {
+        transform: translateY(-2px);
+        background: #ffffff1f;
       }
 
       section {
@@ -259,44 +307,8 @@
         padding: 1.4rem;
         display: grid;
         gap: 1rem;
-      }
-
-      .hourglass-wrap {
-        display: grid;
-        place-items: center;
-        margin-bottom: 0.25rem;
-      }
-
-      .hourglass-svg {
-        width: min(120px, 28vw);
-        height: auto;
-        display: block;
-        filter: drop-shadow(0 10px 14px rgba(73, 53, 47, 0.14));
-      }
-
-      .hourglass-frame {
-        fill: none;
-        stroke: var(--accent);
-        stroke-width: 3;
-      }
-
-      .hourglass-glass {
-        fill: #fff8f4;
-        stroke: color-mix(in srgb, var(--accent) 55%, #fff 45%);
-        stroke-width: 1.5;
-      }
-
-      .hourglass-sand {
-        fill: color-mix(in srgb, var(--accent-soft) 80%, #fff 20%);
-      }
-
-      .hourglass-stream {
-        fill: var(--accent-strong);
-        opacity: 0.85;
-      }
-
-      .hourglass-gloss {
-        fill: #ffffff99;
+        background:
+          linear-gradient(145deg, #ffffff 0%, #fbf4f1 100%);
       }
 
       .countdown-label {
@@ -349,6 +361,10 @@
         margin-top: 0.45rem;
       }
 
+      .section-title {
+        text-wrap: balance;
+      }
+
       .section-lead {
         color: var(--muted);
         max-width: 62ch;
@@ -367,6 +383,13 @@
         border: 1px solid var(--line);
         border-radius: 18px;
         overflow: hidden;
+        transition: transform 0.45s ease, box-shadow 0.45s ease, border-color 0.45s ease;
+      }
+
+      .card:hover {
+        transform: translateY(-6px);
+        box-shadow: 0 22px 38px rgba(73, 53, 47, 0.16);
+        border-color: #dfcbc2;
       }
 
       .card-content {
@@ -588,11 +611,26 @@
         place-items: center;
         color: #fff;
         text-align: center;
+        position: relative;
+        overflow: hidden;
       }
 
       .parallax-band h3 {
         font-family: "Playfair Display", serif;
         font-size: clamp(1.8rem, 5vw, 3rem);
+        position: relative;
+        z-index: 1;
+        text-shadow: 0 10px 24px #00000078;
+      }
+
+      .parallax-band::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background:
+          radial-gradient(circle at 18% 50%, #ffffff22, transparent 22%),
+          radial-gradient(circle at 80% 40%, #f7d7c222, transparent 24%);
+        animation: shimmerBand 10s ease-in-out infinite alternate;
       }
 
       .detail-grid {
@@ -606,6 +644,12 @@
         background: var(--paper);
         border-radius: 18px;
         overflow: hidden;
+        transition: transform 0.35s ease, box-shadow 0.35s ease;
+      }
+
+      .detail-card:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 16px 30px rgba(73, 53, 47, 0.14);
       }
 
       .detail-body {
@@ -723,6 +767,41 @@
         color: var(--muted);
       }
 
+      @keyframes driftGlow {
+        0% {
+          transform: translate3d(-1%, 0, 0) scale(1);
+        }
+        100% {
+          transform: translate3d(1.5%, -1.5%, 0) scale(1.04);
+        }
+      }
+
+      @keyframes floatParticle {
+        0% {
+          transform: translateY(0) scale(0.8);
+          opacity: 0.2;
+        }
+        30% {
+          opacity: 0.8;
+        }
+        70% {
+          opacity: 0.35;
+        }
+        100% {
+          transform: translateY(-80px) scale(1.2);
+          opacity: 0;
+        }
+      }
+
+      @keyframes shimmerBand {
+        0% {
+          opacity: 0.35;
+        }
+        100% {
+          opacity: 0.65;
+        }
+      }
+
       [data-parallax] {
         transform: translateY(0);
         will-change: transform;
@@ -803,6 +882,11 @@
         .carousel-track {
           transition: none;
         }
+        .hero::after,
+        .hero-particles span,
+        .parallax-band::after {
+          animation: none;
+        }
         .reveal,
         .reveal.is-visible {
           opacity: 1;
@@ -840,6 +924,10 @@
 
     <header class="hero" id="home">
       <div class="hero-layer" data-parallax="0.12"></div>
+      <div class="hero-particles" aria-hidden="true">
+        <span></span><span></span><span></span><span></span><span></span><span></span
+        ><span></span>
+      </div>
       <div class="container hero-content">
         <p class="hero-kicker">We are getting married</p>
         <h1 data-parallax="0.2">Reginwell & CJ</h1>
@@ -860,42 +948,6 @@
       <section class="countdown reveal">
         <div class="container">
           <div class="panel countdown-inner">
-            <div class="hourglass-wrap" aria-hidden="true">
-              <svg
-                class="hourglass-svg"
-                id="countdown-hourglass"
-                viewBox="0 0 120 170"
-                aria-hidden="true"
-              >
-                <rect class="hourglass-frame" x="12" y="8" width="96" height="154" rx="14" />
-                <path class="hourglass-glass" d="M30 24 H90 V34 C90 54 66 63 60 85 C54 63 30 54 30 34 Z" />
-                <path class="hourglass-glass" d="M30 146 H90 V136 C90 116 66 107 60 85 C54 107 30 116 30 136 Z" />
-                <rect class="hourglass-frame" x="50" y="79" width="20" height="12" rx="6" />
-
-                <polygon
-                  id="sand-top"
-                  class="hourglass-sand"
-                  points="38,34 82,34 60,78"
-                />
-                <polygon
-                  id="sand-bottom"
-                  class="hourglass-sand"
-                  points="52,136 68,136 60,152"
-                />
-                <rect
-                  id="sand-stream"
-                  class="hourglass-stream"
-                  x="59"
-                  y="84"
-                  width="2"
-                  height="44"
-                  rx="1"
-                />
-
-                <path class="hourglass-gloss" d="M38 28 C33 36 33 52 47 61 C42 49 43 37 47 28 Z" />
-                <path class="hourglass-gloss" d="M38 142 C33 134 33 118 47 109 C42 121 43 133 47 142 Z" />
-              </svg>
-            </div>
             <p class="countdown-label">Counting down to our forever</p>
             <div class="count-grid" id="countdown">
               <div class="count-item"><b id="days">00</b><span>Days</span></div>
@@ -1278,49 +1330,9 @@
       window.addEventListener("scroll", updateScrollProgress, { passive: true });
 
       const weddingDate = new Date("Jan 4, 2027 00:00:00").getTime();
-      const relationshipStartDate = new Date("Jan 4, 2017 00:00:00").getTime();
-      const totalCountdownSpan = Math.max(weddingDate - relationshipStartDate, 1);
       const id = (x) => document.getElementById(x);
-      const sandTop = id("sand-top");
-      const sandBottom = id("sand-bottom");
-      const sandStream = id("sand-stream");
-
-      const clamp = (n, min, max) => Math.min(max, Math.max(min, n));
-
-      const updateHourglass = (diff) => {
-        const remainingRatio = clamp(diff / totalCountdownSpan, 0, 1);
-        const filledRatio = 1 - remainingRatio;
-
-        const topHeight = 44 * remainingRatio;
-        const topY = 78 - topHeight;
-        sandTop.setAttribute(
-          "points",
-          "38,34 82,34 60," + Math.round(topY),
-        );
-
-        const bottomHalfWidth = 22 * filledRatio;
-        const bottomTopY = 136;
-        const bottomApexY = 136 + 16 * filledRatio;
-        sandBottom.setAttribute(
-          "points",
-          Math.round(60 - bottomHalfWidth) +
-            "," +
-            bottomTopY +
-            " " +
-            Math.round(60 + bottomHalfWidth) +
-            "," +
-            bottomTopY +
-            " 60," +
-            Math.round(bottomApexY),
-        );
-
-        const pulse = 0.65 + 0.35 * Math.sin(Date.now() / 280);
-        sandStream.style.opacity = diff > 0 ? String(pulse) : "0";
-      };
-
       const tick = () => {
         const diff = weddingDate - Date.now();
-        updateHourglass(diff);
         if (diff <= 0) {
           id("countdown").innerHTML = "<p>Happily Ever After!</p>";
           return;
