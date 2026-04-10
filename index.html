@@ -5,668 +5,1536 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="robots" content="noindex, nofollow" />
     <title>Our Wedding | C & R</title>
-
     <link
-      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@500;700&display=swap"
       rel="stylesheet"
     />
+    <style>
+      :root {
+        --bg: #f8f5f3;
+        --paper: #fff;
+        --text: #2d2a2a;
+        --muted: #6d6868;
+        --line: #e9dfdb;
+        --accent: #8f6f64;
+        --accent-strong: #7d5c52;
+        --accent-soft: #f1e6e1;
+        --shadow: 0 18px 34px rgba(73, 53, 47, 0.12);
+      }
 
-    <link rel="stylesheet" href="style.css" />
+      * {
+        box-sizing: border-box;
+        margin: 0;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        font-family: Inter, Arial, sans-serif;
+        color: var(--text);
+        background: var(--bg);
+        line-height: 1.65;
+      }
+
+      img {
+        width: 100%;
+        display: block;
+        height: auto;
+      }
+
+      .container {
+        width: min(1100px, 92%);
+        margin: 0 auto;
+      }
+
+      .site-nav {
+        position: fixed;
+        inset: 0 0 auto;
+        z-index: 50;
+        background: rgba(248, 245, 243, 0.88);
+        backdrop-filter: blur(8px);
+        border-bottom: 1px solid var(--line);
+      }
+
+      .scroll-progress {
+        position: fixed;
+        top: 0;
+        left: 0;
+        height: 3px;
+        width: 100%;
+        transform-origin: left center;
+        transform: scaleX(0);
+        background: linear-gradient(90deg, var(--accent), var(--accent-strong));
+        z-index: 60;
+      }
+
+      .nav-inner {
+        min-height: 72px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1rem;
+      }
+
+      .brand {
+        display: flex;
+        align-items: center;
+        gap: 0.8rem;
+        text-decoration: none;
+        color: inherit;
+      }
+
+      .brand img {
+        width: 44px;
+      }
+
+      .brand span {
+        font-family: "Playfair Display", serif;
+        letter-spacing: 0.08em;
+        font-size: 1.05rem;
+      }
+
+      .menu-btn {
+        background: transparent;
+        border: 0;
+        padding: 0.45rem;
+        display: grid;
+        gap: 5px;
+        cursor: pointer;
+      }
+
+      .menu-btn span {
+        width: 25px;
+        height: 2px;
+        background: var(--text);
+      }
+
+      .nav-links {
+        position: fixed;
+        top: 72px;
+        right: 0;
+        left: 0;
+        background: var(--paper);
+        border-bottom: 1px solid var(--line);
+        display: grid;
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.35s ease;
+      }
+
+      .nav-links.open {
+        max-height: 420px;
+      }
+
+      .nav-links a {
+        color: var(--text);
+        text-decoration: none;
+        text-transform: uppercase;
+        letter-spacing: 0.12em;
+        font-size: 0.76rem;
+        font-weight: 600;
+        padding: 1rem 1.2rem;
+      }
+
+      .hero {
+        min-height: 100svh;
+        position: relative;
+        overflow: clip;
+        display: grid;
+        align-items: center;
+      }
+
+      .hero::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background:
+          linear-gradient(rgba(18, 16, 16, 0.35), rgba(18, 16, 16, 0.45)),
+          url("assets/images/our-story-1.jpg") center / cover;
+        transform: scale(1.06);
+      }
+
+      .hero-layer {
+        position: absolute;
+        inset: 0;
+        pointer-events: none;
+        background: radial-gradient(circle at 20% 20%, #ffffff33, transparent 45%),
+          radial-gradient(circle at 80% 80%, #ffffff22, transparent 40%);
+      }
+
+      .hero-content {
+        z-index: 1;
+        position: relative;
+        color: #fff;
+        text-align: center;
+        padding-top: 5rem;
+      }
+
+      .hero-glass {
+        margin: 1.2rem auto 0;
+        width: min(620px, 100%);
+        border: 1px solid #ffffff4d;
+        background: #ffffff1a;
+        backdrop-filter: blur(8px);
+        border-radius: 16px;
+        padding: 0.9rem 1rem;
+      }
+
+      .chip-row {
+        margin-top: 0.45rem;
+        display: flex;
+        gap: 0.55rem;
+        justify-content: center;
+        flex-wrap: wrap;
+      }
+
+      .chip {
+        border: 1px solid #ffffff80;
+        padding: 0.32rem 0.7rem;
+        border-radius: 999px;
+        font-size: 0.72rem;
+        letter-spacing: 0.04em;
+      }
+
+      .hero-kicker {
+        text-transform: uppercase;
+        letter-spacing: 0.18em;
+        font-size: 0.72rem;
+      }
+
+      .hero h1 {
+        margin-top: 1rem;
+        font-family: "Playfair Display", serif;
+        font-size: clamp(2.6rem, 8vw, 5.8rem);
+      }
+
+      .hero-date {
+        margin-top: 0.9rem;
+        font-size: clamp(1rem, 2.2vw, 1.4rem);
+      }
+
+      .hero-cta {
+        margin-top: 2rem;
+        display: inline-block;
+        text-decoration: none;
+        color: #fff;
+        border: 1px solid #ffffffaa;
+        border-radius: 999px;
+        padding: 0.72rem 1.2rem;
+      }
+
+      section {
+        padding: clamp(4rem, 6vw, 6rem) 0;
+      }
+
+      .reveal {
+        opacity: 0;
+        transform: translateY(24px);
+        transition:
+          opacity 0.55s ease,
+          transform 0.55s ease;
+      }
+
+      .reveal.is-visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      .panel {
+        background: var(--paper);
+        border: 1px solid var(--line);
+        border-radius: 22px;
+        box-shadow: var(--shadow);
+      }
+
+      .countdown {
+        margin-top: -3.3rem;
+        position: relative;
+        z-index: 2;
+      }
+
+      .countdown-inner {
+        padding: 1.4rem;
+        display: grid;
+        gap: 1rem;
+      }
+
+      .hourglass-wrap {
+        display: grid;
+        place-items: center;
+        margin-bottom: 0.25rem;
+      }
+
+      .hourglass-svg {
+        width: min(120px, 28vw);
+        height: auto;
+        display: block;
+        filter: drop-shadow(0 10px 14px rgba(73, 53, 47, 0.14));
+      }
+
+      .hourglass-frame {
+        fill: none;
+        stroke: var(--accent);
+        stroke-width: 3;
+      }
+
+      .hourglass-glass {
+        fill: #fff8f4;
+        stroke: color-mix(in srgb, var(--accent) 55%, #fff 45%);
+        stroke-width: 1.5;
+      }
+
+      .hourglass-sand {
+        fill: color-mix(in srgb, var(--accent-soft) 80%, #fff 20%);
+      }
+
+      .hourglass-stream {
+        fill: var(--accent-strong);
+        opacity: 0.85;
+      }
+
+      .hourglass-gloss {
+        fill: #ffffff99;
+      }
+
+      .countdown-label {
+        text-align: center;
+        text-transform: uppercase;
+        letter-spacing: 0.12em;
+        font-size: 0.72rem;
+        color: var(--muted);
+      }
+
+      .count-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 0.9rem;
+      }
+
+      .count-item {
+        background: var(--accent-soft);
+        border-radius: 16px;
+        text-align: center;
+        padding: 1rem 0.7rem;
+      }
+
+      .count-item b {
+        display: block;
+        font-family: "Playfair Display", serif;
+        font-size: clamp(1.5rem, 6vw, 2.1rem);
+      }
+
+      .count-item span {
+        text-transform: uppercase;
+        font-size: 0.66rem;
+        letter-spacing: 0.1em;
+        color: var(--muted);
+      }
+
+      .section-title {
+        font-family: "Playfair Display", serif;
+        font-size: clamp(1.9rem, 4.5vw, 3rem);
+        margin-bottom: 1rem;
+        position: relative;
+      }
+
+      .section-title::after {
+        content: "";
+        display: block;
+        width: 56px;
+        height: 2px;
+        background: var(--accent-soft);
+        margin-top: 0.45rem;
+      }
+
+      .section-lead {
+        color: var(--muted);
+        max-width: 62ch;
+      }
+
+      .story-layout,
+      .proposal-layout,
+      .rsvp-layout {
+        margin-top: 2rem;
+        display: grid;
+        gap: 1.3rem;
+      }
+
+      .card {
+        background: var(--paper);
+        border: 1px solid var(--line);
+        border-radius: 18px;
+        overflow: hidden;
+      }
+
+      .card-content {
+        padding: 1.25rem;
+      }
+
+      .quote {
+        border-left: 3px solid var(--accent);
+        padding-left: 1rem;
+        margin: 1rem 0;
+        color: #4d4545;
+        font-style: italic;
+      }
+
+      .story-break {
+        margin-top: 2rem;
+        border-radius: 18px;
+        overflow: hidden;
+        border: 1px solid var(--line);
+        box-shadow: var(--shadow);
+      }
+
+      .story-columns {
+        margin-top: 1.75rem;
+        display: grid;
+        gap: 1.3rem;
+      }
+
+      .author-tag {
+        font-size: 0.65rem;
+        letter-spacing: 0.28em;
+        text-transform: uppercase;
+        color: var(--muted);
+        font-weight: 600;
+        margin-bottom: 0.65rem;
+      }
+
+      .story-heading {
+        font-family: "Playfair Display", serif;
+        font-size: clamp(1.35rem, 3vw, 1.75rem);
+        margin-bottom: 1rem;
+        color: var(--text);
+      }
+
+      .story-prose {
+        overflow: auto;
+      }
+
+      .drop-cap {
+        float: left;
+        font-family: "Playfair Display", serif;
+        font-size: clamp(2.8rem, 7vw, 3.6rem);
+        line-height: 0.82;
+        padding-right: 0.55rem;
+        margin-top: 0.1rem;
+        color: var(--accent);
+      }
+
+      .story-paragraph {
+        margin-bottom: 1.35rem;
+        font-size: 1.02rem;
+      }
+
+      .story-paragraph:last-child {
+        margin-bottom: 0;
+      }
+
+      .story-paragraph.italic {
+        font-style: italic;
+        border-left: 3px solid var(--accent-soft);
+        padding-left: 1.1rem;
+        margin: 1.75rem 0;
+      }
+
+      .highlight-quote {
+        font-family: "Playfair Display", serif;
+        font-size: clamp(1.15rem, 2.8vw, 1.55rem);
+        font-style: italic;
+        text-align: center;
+        margin: 2rem 0;
+        padding: 0 0.5rem;
+        color: var(--text);
+      }
+
+      .story-caption {
+        text-align: center;
+        font-size: 0.85rem;
+        color: var(--muted);
+        font-family: "Playfair Display", serif;
+      }
+
+      .gallery-section .section-lead {
+        margin-bottom: 0;
+      }
+
+      .carousel {
+        position: relative;
+        margin-top: 1.75rem;
+      }
+
+      .carousel-viewport {
+        overflow: hidden;
+        border-radius: 18px;
+        border: 1px solid var(--line);
+        background: #1a1818;
+        box-shadow: var(--shadow);
+      }
+
+      .carousel-track {
+        display: flex;
+        transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+      }
+
+      .carousel-slide {
+        flex: 0 0 100%;
+        min-width: 0;
+      }
+
+      .carousel-slide img {
+        width: 100%;
+        height: min(58vh, 540px);
+        object-fit: cover;
+      }
+
+      .carousel-slide figcaption {
+        padding: 0.65rem 1rem 0.9rem;
+        font-size: 0.8rem;
+        color: #e8e0dc;
+        text-align: center;
+        background: linear-gradient(transparent, rgba(0, 0, 0, 0.35));
+      }
+
+      .carousel-btn {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 44px;
+        height: 44px;
+        border-radius: 50%;
+        border: 1px solid var(--line);
+        background: rgba(255, 255, 255, 0.92);
+        color: var(--text);
+        font-size: 1.35rem;
+        line-height: 1;
+        cursor: pointer;
+        display: grid;
+        place-items: center;
+        box-shadow: 0 6px 18px rgba(45, 42, 42, 0.12);
+        transition: background 0.2s ease;
+      }
+
+      .carousel-btn:hover {
+        background: #fff;
+      }
+
+      .carousel-btn:focus-visible {
+        outline: 2px solid var(--accent);
+        outline-offset: 2px;
+      }
+
+      .carousel-prev {
+        left: 0.65rem;
+      }
+
+      .carousel-next {
+        right: 0.65rem;
+      }
+
+      .carousel-dots {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 0.45rem;
+        margin-top: 1rem;
+      }
+
+      .carousel-foot {
+        margin-top: 0.8rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 1rem;
+        color: var(--muted);
+        font-size: 0.8rem;
+      }
+
+      .carousel-toggle {
+        border: 1px solid var(--line);
+        background: var(--paper);
+        color: var(--text);
+        border-radius: 999px;
+        padding: 0.35rem 0.85rem;
+        cursor: pointer;
+        font-size: 0.77rem;
+      }
+
+      .carousel-dot {
+        width: 9px;
+        height: 9px;
+        border-radius: 50%;
+        border: 0;
+        padding: 0;
+        background: var(--line);
+        cursor: pointer;
+        transition: background 0.2s ease, transform 0.2s ease;
+      }
+
+      .carousel-dot[aria-current="true"] {
+        background: var(--accent);
+        transform: scale(1.15);
+      }
+
+      .parallax-band {
+        min-height: 48vh;
+        background:
+          linear-gradient(rgba(26, 22, 22, 0.28), rgba(26, 22, 22, 0.28)),
+          url("assets/images/proposal-1.png") center / cover;
+        display: grid;
+        place-items: center;
+        color: #fff;
+        text-align: center;
+      }
+
+      .parallax-band h3 {
+        font-family: "Playfair Display", serif;
+        font-size: clamp(1.8rem, 5vw, 3rem);
+      }
+
+      .detail-grid {
+        margin-top: 2rem;
+        display: grid;
+        gap: 1rem;
+      }
+
+      .detail-card {
+        border: 1px solid var(--line);
+        background: var(--paper);
+        border-radius: 18px;
+        overflow: hidden;
+      }
+
+      .detail-body {
+        padding: 1rem 1.1rem 1.2rem;
+      }
+
+      .detail-body h4 {
+        font-family: "Playfair Display", serif;
+        margin-bottom: 0.45rem;
+      }
+
+      .detail-body p {
+        color: var(--muted);
+      }
+
+      .map-wrap {
+        margin-top: 1rem;
+        border-radius: 16px;
+        overflow: hidden;
+        border: 1px solid var(--line);
+      }
+
+      .form {
+        display: grid;
+        gap: 0.9rem;
+      }
+
+      .form label {
+        font-size: 0.78rem;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        color: var(--muted);
+      }
+
+      .form input,
+      .form textarea {
+        width: 100%;
+        border: 1px solid var(--line);
+        border-radius: 12px;
+        padding: 0.85rem 0.95rem;
+        font: inherit;
+      }
+
+      .form textarea {
+        min-height: 130px;
+        resize: vertical;
+      }
+
+      .attend {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 0.65rem;
+      }
+
+      .attend label {
+        text-transform: none;
+        letter-spacing: 0;
+      }
+
+      .btn {
+        border: 0;
+        border-radius: 999px;
+        padding: 0.95rem 1.2rem;
+        font-weight: 600;
+        background: var(--accent);
+        color: #fff;
+        cursor: pointer;
+      }
+
+      .faq-list {
+        margin-top: 1.3rem;
+        display: grid;
+        gap: 0.8rem;
+      }
+
+      details {
+        background: var(--paper);
+        border: 1px solid var(--line);
+        border-radius: 12px;
+        padding: 0.95rem 1rem;
+      }
+
+      summary {
+        cursor: pointer;
+        font-weight: 600;
+      }
+
+      details p {
+        margin-top: 0.7rem;
+        color: var(--muted);
+      }
+
+      .music-control {
+        position: fixed;
+        right: 1rem;
+        bottom: 1rem;
+        z-index: 90;
+        width: 52px;
+        height: 52px;
+        border-radius: 50%;
+        border: 1px solid var(--line);
+        background: #ffffffd6;
+        display: grid;
+        place-items: center;
+        cursor: pointer;
+      }
+
+      .music-control.playing {
+        outline: 2px solid var(--accent-soft);
+      }
+
+      .site-footer {
+        padding: 2.8rem 0 3.2rem;
+        text-align: center;
+        color: var(--muted);
+      }
+
+      [data-parallax] {
+        transform: translateY(0);
+        will-change: transform;
+      }
+
+      @media (min-width: 860px) {
+        .menu-btn {
+          display: none;
+        }
+
+        .nav-links {
+          position: static;
+          max-height: none;
+          border: 0;
+          background: transparent;
+          display: flex;
+          gap: 0.35rem;
+        }
+
+        .nav-links a {
+          padding: 0.6rem 0.9rem;
+          border-radius: 999px;
+        }
+
+        .nav-links a:hover {
+          background: var(--paper);
+        }
+
+        .nav-links a.active {
+          background: #ffffff;
+          color: var(--accent-strong);
+        }
+
+        .count-grid {
+          grid-template-columns: repeat(4, minmax(0, 1fr));
+        }
+
+        .story-layout,
+        .proposal-layout {
+          grid-template-columns: 1.1fr 0.9fr;
+          align-items: start;
+        }
+
+        .story-columns {
+          grid-template-columns: 1.12fr 0.88fr;
+          align-items: start;
+        }
+
+        .rsvp-layout {
+          grid-template-columns: 0.9fr 1.1fr;
+          align-items: start;
+        }
+
+        .detail-grid {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+
+        .parallax-band {
+          background-attachment: fixed;
+        }
+
+        .carousel-btn {
+          width: 48px;
+          height: 48px;
+        }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        html {
+          scroll-behavior: auto;
+        }
+        [data-parallax] {
+          transform: none !important;
+        }
+        .parallax-band {
+          background-attachment: scroll;
+        }
+        .carousel-track {
+          transition: none;
+        }
+        .reveal,
+        .reveal.is-visible {
+          opacity: 1;
+          transform: none;
+          transition: none;
+        }
+      }
+    </style>
   </head>
   <body>
+    <div class="scroll-progress" id="scroll-progress"></div>
     <audio id="bg-music" loop>
       <source src="assets/music/celeste-tothapi.mp3" type="audio/mpeg" />
-      Your browser does not support the audio element.
     </audio>
 
-    <div
-      id="music-control"
-      class="music-control"
-      aria-label="Toggle Background Music"
-    >
-      <span class="music-tooltip">Tap for music</span>
-      <div id="player-engine">
-        <svg id="vinyl-outline" viewBox="0 0 100 100" class="vinyl-svg">
-          <circle
-            cx="50"
-            cy="50"
-            r="45"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="2"
-          />
-          <circle
-            cx="50"
-            cy="50"
-            r="10"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="2"
-          />
-          <circle cx="50" cy="50" r="2" fill="currentColor" />
-        </svg>
-
-        <svg id="needle-line" viewBox="0 0 100 100" class="needle-svg">
-          <line
-            x1="80"
-            y1="20"
-            x2="80"
-            y2="50"
-            stroke="currentColor"
-            stroke-width="2.5"
-            stroke-linecap="round"
-          />
-          <line
-            x1="80"
-            y1="50"
-            x2="60"
-            y2="70"
-            stroke="currentColor"
-            stroke-width="2.5"
-            stroke-linecap="round"
-          />
-        </svg>
-
-        <svg id="notes-container" viewBox="0 0 100 100" class="notes-svg">
-          <path
-            class="note note-1"
-            d="M30,30 L30,20 L35,20 L35,30 M30,22 L35,22"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="1.5"
-          />
-          <path
-            class="note note-2"
-            d="M15,50 L15,40 L20,40 L20,50 M15,42 L20,42"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="1.5"
-          />
-          <path
-            class="note note-3"
-            d="M40,70 L40,60 L45,60 L45,70 M40,62 L45,62"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="1.5"
-          />
-        </svg>
-      </div>
-    </div>
-    <nav>
-      <div class="nav-content">
-        <a href="#" class="logo-link">
-          <img
-            src="assets/images/wedding_favicon.png"
-            alt="C & R Wedding Logo"
-            class="nav-logo"
-          />
+    <nav class="site-nav">
+      <div class="container nav-inner">
+        <a class="brand" href="#home">
+          <img src="assets/images/wedding_favicon.png" alt="C and R logo" />
+          <span>C & R</span>
         </a>
-
-        <div class="menu-toggle" id="mobile-menu">
-          <span class="bar"></span>
-          <span class="bar"></span>
-          <span class="bar"></span>
-        </div>
-
-        <div class="nav-links" id="nav-list">
+        <button class="menu-btn" id="menu-btn" aria-label="Toggle menu">
+          <span></span><span></span><span></span>
+        </button>
+        <div class="nav-links" id="nav-links">
           <a href="#home">Home</a>
           <a href="#story">Our Story</a>
           <a href="#details">Details</a>
+          <a href="#gallery">Gallery</a>
           <a href="#rsvp">RSVP</a>
           <a href="#faq">FAQ</a>
         </div>
       </div>
     </nav>
 
+    <header class="hero" id="home">
+      <div class="hero-layer" data-parallax="0.12"></div>
+      <div class="container hero-content">
+        <p class="hero-kicker">We are getting married</p>
+        <h1 data-parallax="0.2">Reginwell & CJ</h1>
+        <p class="hero-date">January 4, 2027 • Tagaytay</p>
+        <div class="hero-glass reveal">
+          <p>Save the date and celebrate with us in Tagaytay.</p>
+          <div class="chip-row">
+            <span class="chip">Ceremony • 4:00 PM</span>
+            <span class="chip">Reception • 6:00 PM</span>
+            <span class="chip">RSVP by Nov 27, 2026</span>
+          </div>
+        </div>
+        <a class="hero-cta" href="#rsvp">RSVP now</a>
+      </div>
+    </header>
+
     <main>
-      <section id="home" class="hero-section">
-        <div class="hero-content">
-          <p class="subtitle">WE ARE GETTING MARRIED</p>
-          <h1>C & R</h1>
-          <p class="date">01 . 04 . 2027</p>
-          <div class="scroll-indicator">↓</div>
-        </div>
-      </section>
-
-      <section id="timer-bridge" class="timer-section">
+      <section class="countdown reveal">
         <div class="container">
-          <p class="timer-label">Counting down to January 4, 2027</p>
+          <div class="panel countdown-inner">
+            <div class="hourglass-wrap" aria-hidden="true">
+              <svg
+                class="hourglass-svg"
+                id="countdown-hourglass"
+                viewBox="0 0 120 170"
+                aria-hidden="true"
+              >
+                <rect class="hourglass-frame" x="12" y="8" width="96" height="154" rx="14" />
+                <path class="hourglass-glass" d="M30 24 H90 V34 C90 54 66 63 60 85 C54 63 30 54 30 34 Z" />
+                <path class="hourglass-glass" d="M30 146 H90 V136 C90 116 66 107 60 85 C54 107 30 116 30 136 Z" />
+                <rect class="hourglass-frame" x="50" y="79" width="20" height="12" rx="6" />
 
-          <div id="countdown" class="countdown-ribbon">
-            <div class="time-unit">
-              <span id="days">00</span>
-              <label>Days</label>
-            </div>
-            <div class="timer-divider">/</div>
-            <div class="time-unit">
-              <span id="hours">00</span>
-              <label>Hours</label>
-            </div>
-            <div class="timer-divider">/</div>
-            <div class="time-unit">
-              <span id="minutes">00</span>
-              <label>Minutes</label>
-            </div>
-            <div class="timer-divider">/</div>
-            <div class="time-unit">
-              <span id="seconds">00</span>
-              <label>Seconds</label>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section id="story">
-        <div class="container">
-          <h2 class="editorial-title">Our Story</h2>
-
-          <section class="image-break-section">
-            <div class="container-wide">
-              <div class="story-large-image">
-                <img
-                  src="assets/images/our-story.jpg"
-                  alt="CJ and Reginwell Story Highlight"
-                  loading="lazy"
+                <polygon
+                  id="sand-top"
+                  class="hourglass-sand"
+                  points="38,34 82,34 60,78"
                 />
-              </div>
-            </div>
-          </section>
-
-          <div class="story-content">
-            <div class="story-text">
-              <p class="author-tag">BY REGINWELL</p>
-              <h3>How We Met</h3>
-
-              <p class="story-paragraph">
-                <span class="drop-cap">D</span>uring our college days, fate
-                brought us together through music. I was in my second year, and
-                CJ was in his first when we both joined an organization called
-                <strong>Band Republic</strong> — a community of passionate
-                musicians.
-              </p>
-
-              <p class="story-paragraph">
-                At the time, we were preparing to compete in a Battle of the
-                Bands and urgently needed a bassist. CJ stepped in to fill the
-                role. But somewhere between rehearsals and harmonies, the
-                extrovert and the introvert found their rhythm.
-              </p>
-
-              <div class="highlight-quote">
-                "Who knew that audition would lead us to forever?"
-              </div>
-
-              <p class="story-paragraph">
-                As time went by, rehearsals turned into conversations. I was
-                loud; He was quiet. I loved the spotlight; He preferred the
-                background. Somewhere between band practices and shared moments,
-                we grew closer without even realizing it.
-              </p>
-
-              <p class="story-paragraph italic">
-                If I’m being honest… I think I liked him first. But I wasn’t so
-                sure he liked me back. I told myself: "I will NOT message him
-                for the whole day. If he doesn’t message me, I’ll stop waiting."
-              </p>
-
-              <p class="story-paragraph">
-                I waited. And waited. He didn’t message me... not until exactly
-                before midnight. His message?
-                <em
-                  >“Sorry for not messaging you the whole day. I was busy with
-                  my homework.”</em
-                >
-              </p>
-
-              <p class="story-paragraph">
-                After months of getting to know each other, we finally made it
-                official on
-                <strong>January 4, 2017</strong>.
-              </p>
-            </div>
-
-            <div class="story-image">
-              <div class="image-wrapper">
-                <img
-                  src="assets/images/our-story-1.jpg"
-                  alt="Reginwell and CJ"
+                <polygon
+                  id="sand-bottom"
+                  class="hourglass-sand"
+                  points="52,136 68,136 60,152"
                 />
-                <p class="caption">Established 2017</p>
+                <rect
+                  id="sand-stream"
+                  class="hourglass-stream"
+                  x="59"
+                  y="84"
+                  width="2"
+                  height="44"
+                  rx="1"
+                />
+
+                <path class="hourglass-gloss" d="M38 28 C33 36 33 52 47 61 C42 49 43 37 47 28 Z" />
+                <path class="hourglass-gloss" d="M38 142 C33 134 33 118 47 109 C42 121 43 133 47 142 Z" />
+              </svg>
+            </div>
+            <p class="countdown-label">Counting down to our forever</p>
+            <div class="count-grid" id="countdown">
+              <div class="count-item"><b id="days">00</b><span>Days</span></div>
+              <div class="count-item"><b id="hours">00</b><span>Hours</span></div>
+              <div class="count-item">
+                <b id="minutes">00</b><span>Minutes</span>
+              </div>
+              <div class="count-item">
+                <b id="seconds">00</b><span>Seconds</span>
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      <section id="proposal">
+      <section id="story" class="reveal">
         <div class="container">
-          <h2 class="editorial-title">The Proposal</h2>
+          <h2 class="section-title">Our Story</h2>
+          <p class="section-lead">
+            From band rehearsals to forever—music brought us together, and love
+            kept the tempo.
+          </p>
 
-          <div class="proposal-content">
-            <div class="proposal-text">
-              <p class="proposal-lead">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do
-                eiusmod tempor incididunt ut labore et dolore magna aliqua.
-              </p>
+          <div class="story-break">
+            <img
+              src="assets/images/our-story.jpg"
+              alt="CJ and Reginwell story highlight"
+              loading="lazy"
+            />
+          </div>
 
-              <p class="proposal-paragraph">
-                Ut enim ad minim veniam, quis nostrud exercitation ullamco
-                laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure
-                dolor in reprehenderit in voluptate velit esse cillum dolore eu
-                fugiat nulla pariatur.
-              </p>
+          <div class="story-columns">
+            <article class="card">
+              <div class="card-content story-prose">
+                <p class="author-tag">By Reginwell</p>
+                <h3 class="story-heading">How We Met</h3>
 
-              <div class="proposal-highlight">
-                "Excepteur sint occaecat cupidatat non proident, sunt in culpa
-                qui officia deserunt mollit anim id est laborum."
+                <p class="story-paragraph">
+                  <span class="drop-cap">D</span>uring our college days, fate
+                  brought us together through music. I was in my second year, and
+                  CJ was in his first when we both joined an organization called
+                  <strong>Band Republic</strong> — a community of passionate
+                  musicians.
+                </p>
+
+                <p class="story-paragraph">
+                  At the time, we were preparing to compete in a Battle of the
+                  Bands and urgently needed a bassist. CJ stepped in to fill the
+                  role. But somewhere between rehearsals and harmonies, the
+                  extrovert and the introvert found their rhythm.
+                </p>
+
+                <p class="highlight-quote">
+                  "Who knew that audition would lead us to forever?"
+                </p>
+
+                <p class="story-paragraph">
+                  As time went by, rehearsals turned into conversations. I was
+                  loud; He was quiet. I loved the spotlight; He preferred the
+                  background. Somewhere between band practices and shared moments,
+                  we grew closer without even realizing it.
+                </p>
+
+                <p class="story-paragraph italic">
+                  If I'm being honest… I think I liked him first. But I wasn't so
+                  sure he liked me back. I told myself: "I will NOT message him
+                  for the whole day. If he doesn't message me, I'll stop waiting."
+                </p>
+
+                <p class="story-paragraph">
+                  I waited. And waited. He didn't message me... not until exactly
+                  before midnight. His message?
+                  <em
+                    >"Sorry for not messaging you the whole day. I was busy with
+                    my homework."</em
+                  >
+                </p>
+
+                <p class="story-paragraph">
+                  After months of getting to know each other, we finally made it
+                  official on
+                  <strong>January 4, 2017</strong>.
+                </p>
               </div>
-
-              <p class="proposal-paragraph">
-                Sed ut perspiciatis unde omnis iste natus error sit voluptatem
-                accusantium doloremque laudantium, totam rem aperiam, eaque ipsa
-                quae ab illo inventore veritatis et quasi architecto beatae
-                vitae dicta sunt explicabo.
-              </p>
-            </div>
-
-            <div class="proposal-image">
-              <div class="image-wrapper centered-frame">
-                <img src="assets/images/proposal-1.png" alt="The Proposal" />
-                <p class="caption">The easiest 'Yes' — Location, Date</p>
+            </article>
+            <article class="card" data-parallax="0.16">
+              <img
+                src="assets/images/our-story-1.jpg"
+                alt="Reginwell and CJ"
+                loading="lazy"
+              />
+              <div class="card-content">
+                <p class="story-caption">Established 2017</p>
               </div>
-            </div>
+            </article>
           </div>
         </div>
       </section>
 
-      <section id="details" class="details-section">
-        <div class="container-narrow">
-          <h2 class="editorial-title">Wedding Details</h2>
+      <section
+        id="gallery"
+        class="gallery-section reveal"
+        aria-label="Photo gallery"
+      >
+        <div class="container">
+          <h2 class="section-title">Gallery</h2>
+          <p class="section-lead">
+            A few favorite frames—swap these for your own anytime.
+          </p>
 
-          <div class="accordion-container">
-            <details class="detail-item">
-              <summary>
-                The Ceremony <span class="accordion-icon">+</span>
-              </summary>
-              <div class="detail-content">
-                <div class="detail-inner">
+          <div class="carousel" data-carousel tabindex="0">
+            <div class="carousel-viewport">
+              <div class="carousel-track" id="carousel-track">
+                <figure class="carousel-slide">
                   <img
                     src="assets/images/ceremony/garden-1.jpg"
-                    alt="The Garden at Fruella"
-                    class="detail-img"
+                    alt="Ceremony venue garden"
+                    loading="lazy"
                   />
-                  <div class="detail-text">
-                    <h3>4:00 PM | The Garden at Fruella</h3>
-                    <p class="protocol-note">
-                      Guests are respectfully requested to arrive fifteen (15)
-                      minutes before the ceremony begins.
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </details>
-
-            <details class="detail-item">
-              <summary>
-                The Reception <span class="accordion-icon">+</span>
-              </summary>
-              <div class="detail-content">
-                <div class="image-grid">
+                  <figcaption>The Garden at Fruella</figcaption>
+                </figure>
+                <figure class="carousel-slide">
                   <img
                     src="assets/images/reception/entrance-1.jpg"
-                    alt="Reception Entrance"
+                    alt="Reception entrance"
+                    loading="lazy"
                   />
+                  <figcaption>Reception entrance</figcaption>
+                </figure>
+                <figure class="carousel-slide">
                   <img
                     src="assets/images/reception/drop-off-1.jpg"
-                    alt="Reception Drop-off"
+                    alt="Reception drop-off area"
+                    loading="lazy"
                   />
-                </div>
-                <div class="detail-text">
-                  <h3>6:00 PM | The Pavillion at Fruella</h3>
-                  <p class="protocol-note">
-                    Kindly note that parking is provided on-site for a maximum
-                    of twenty-six (26) vehicles.
-                  </p>
-                </div>
-              </div>
-            </details>
-
-            <details class="detail-item">
-              <summary>
-                The Event Timeline <span class="accordion-icon">+</span>
-              </summary>
-              <div class="detail-content portrait-mode">
-                <img
-                  src="assets/images/timeline/timeline-1.png"
-                  alt="Wedding Timeline"
-                  class="portrait-graphic"
-                />
-              </div>
-            </details>
-
-            <details class="detail-item">
-              <summary>
-                The Entourage <span class="accordion-icon">+</span>
-              </summary>
-              <div class="detail-content">
-                <div class="image-grid portrait-grid">
+                  <figcaption>Drop-off area</figcaption>
+                </figure>
+                <figure class="carousel-slide">
                   <img
-                    src="assets/images/entourage/entourage-1.png"
-                    alt="The Entourage Part 1"
+                    src="assets/images/proposal-1.png"
+                    alt="The proposal"
+                    loading="lazy"
                   />
+                  <figcaption>The proposal</figcaption>
+                </figure>
+                <figure class="carousel-slide">
                   <img
-                    src="assets/images/entourage/entourage-2.png"
-                    alt="The Entourage Part 2"
+                    src="assets/images/timeline/timeline-1.png"
+                    alt="Wedding day timeline"
+                    loading="lazy"
                   />
-                </div>
+                  <figcaption>Day-of timeline</figcaption>
+                </figure>
               </div>
-            </details>
-
-            <details class="detail-item">
-              <summary>
-                The Attire <span class="accordion-icon">+</span>
-              </summary>
-              <div class="detail-content portrait-mode">
-                <img
-                  src="assets/images/attire/attire-1.png"
-                  alt="Wedding Attire"
-                  class="portrait-graphic"
-                />
-                <div class="detail-text">
-                  <p class="protocol-note">
-                    We respectfully request that guests refrain from wearing
-                    jeans. We truly appreciate your understanding and gracious
-                    participation.
-                  </p>
-                </div>
-              </div>
-            </details>
-          </div>
-
-          <div class="location-guide">
-            <h2 class="section-title-small">Location Guide</h2>
-            <div class="map-wrapper">
-              <iframe
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3869.056109633874!2d120.92892771157386!3d14.132797886242852!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x33bd796d1fd7f119%3A0x5fccd52277bc6f1!2sFruella&#39;s%20Events%20Venue%20Tagaytay!5e0!3m2!1sen!2sph!4v1775618401919!5m2!1sen!2sph"
-                width="100%"
-                height="450"
-                style="border: 0"
-                allowfullscreen=""
-                loading="lazy"
-              ></iframe>
+            </div>
+            <button
+              type="button"
+              class="carousel-btn carousel-prev"
+              aria-label="Previous slide"
+            >
+              ‹
+            </button>
+            <button
+              type="button"
+              class="carousel-btn carousel-next"
+              aria-label="Next slide"
+            >
+              ›
+            </button>
+            <div
+              class="carousel-dots"
+              id="carousel-dots"
+              role="tablist"
+              aria-label="Slide markers"
+            ></div>
+            <div class="carousel-foot">
+              <span id="carousel-status">Slide 1 of 5</span>
+              <button
+                type="button"
+                id="carousel-toggle"
+                class="carousel-toggle"
+                aria-label="Pause autoplay"
+              >
+                Pause
+              </button>
             </div>
           </div>
         </div>
       </section>
 
-      <section id="rsvp" class="rsvp-section">
-        <div class="container-narrow">
-          <div class="rsvp-header">
-            <h2 class="editorial-title">
-              RSVP <br />
-              <span class="french-heading">Répondez S’il Vous Plaît</span>
-            </h2>
-          </div>
+      <section class="parallax-band reveal">
+        <h3>Two souls. One promise.</h3>
+      </section>
 
-          <div class="rsvp-content">
-            <div class="rsvp-image-wrapper">
-              <img
-                src="assets/images/rsvp-1.jpg"
-                alt="The Couple"
-                class="rsvp-main-img"
-              />
-            </div>
-
-            <div class="rsvp-text-container">
-              <div class="rsvp-header">
-                <p class="rsvp-intro">
-                  Your response will help us finalize the details of our
-                  celebration. We would be delighted to celebrate with you.
+      <section id="details" class="reveal">
+        <div class="container">
+          <h2 class="section-title">Wedding Details</h2>
+          <div class="detail-grid">
+            <article class="detail-card">
+              <img src="assets/images/ceremony/garden-1.jpg" alt="Ceremony" />
+              <div class="detail-body">
+                <h4>Ceremony • 4:00 PM</h4>
+                <p>
+                  The Garden at Fruella. Please arrive at least 15 minutes before
+                  the ceremony starts.
                 </p>
-                <div class="deadline-badge">
-                  <span class="deadline-label">Please RSVP by</span>
-                  <span class="deadline-date">November 27, 2026</span>
-                </div>
               </div>
+            </article>
 
-              <div class="rsvp-policy-card">
-                <div class="policy-item">
-                  <span class="policy-icon">✦</span>
-                  <p>
-                    Invitation is limited to the named guest only (no plus one).
-                  </p>
-                </div>
-                <div class="policy-item">
-                  <span class="policy-icon">✦</span>
-                  <p>
-                    We kindly request that event details and website remain
-                    private.
-                  </p>
-                </div>
+            <article class="detail-card">
+              <img
+                src="assets/images/reception/entrance-1.jpg"
+                alt="Reception venue"
+              />
+              <div class="detail-body">
+                <h4>Reception • 6:00 PM</h4>
+                <p>
+                  The Pavilion at Fruella. Parking is available on-site with
+                  limited slots.
+                </p>
               </div>
+            </article>
 
-              <p class="rsvp-thanks">
-                Thank you for your understanding. We look forward to seeing you!
-              </p>
+            <article class="detail-card">
+              <img src="assets/images/timeline/timeline-1.png" alt="Timeline" />
+              <div class="detail-body">
+                <h4>Event Timeline</h4>
+                <p>Please follow this flow so everyone enjoys a smooth program.</p>
+              </div>
+            </article>
 
-              <form id="rsvp-form" class="custom-rsvp-form">
-                <div class="form-group">
-                  <label class="form-label" for="full-name">Full Name</label>
-                  <input
-                    id="full-name"
-                    type="text"
-                    name="Full Name"
-                    placeholder="e.g. Juan Dela Cruz"
-                    required
-                    class="form-input"
-                  />
-                </div>
+            <article class="detail-card">
+              <img src="assets/images/attire/attire-1.png" alt="Attire" />
+              <div class="detail-body">
+                <h4>Attire Guide</h4>
+                <p>
+                  Semi-formal to smart casual. Kindly avoid jeans, slippers, and
+                  white attire.
+                </p>
+              </div>
+            </article>
+          </div>
 
-                <div class="form-group">
-                  <label class="form-label">Will you attend?</label>
-                  <div class="attendance-options">
-                    <label class="option-card">
-                      <input
-                        type="radio"
-                        name="Attendance"
-                        value="Yes"
-                        required
-                      />
-                      <span class="card-content">Joyfully Attend</span>
-                    </label>
-                    <label class="option-card">
-                      <input type="radio" name="Attendance" value="No" />
-                      <span class="card-content">Regretfully Decline</span>
-                    </label>
-                  </div>
-                </div>
-
-                <div class="form-group">
-                  <label class="form-label" for="notes">Notes & Requests</label>
-                  <textarea
-                    id="notes"
-                    name="Notes"
-                    placeholder="Dietary restrictions, song requests, or a message..."
-                    class="form-input form-textarea"
-                  ></textarea>
-                </div>
-
-                <button type="submit" id="submit-btn" class="btn-rsvp-submit">
-                  Confirm RSVP
-                </button>
-              </form>
-
-              <div
-                id="form-message"
-                class="form-status-msg"
-                style="display: none"
-              ></div>
-            </div>
+          <div class="map-wrap">
+            <iframe
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3869.056109633874!2d120.92892771157386!3d14.132797886242852!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x33bd796d1fd7f119%3A0x5fccd52277bc6f1!2sFruella&#39;s%20Events%20Venue%20Tagaytay!5e0!3m2!1sen!2sph!4v1775618401919!5m2!1sen!2sph"
+              width="100%"
+              height="420"
+              style="border: 0"
+              loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade"
+              allowfullscreen
+            ></iframe>
           </div>
         </div>
       </section>
 
-      <section id="faq" class="faq-section">
-        <div class="container-narrow">
-          <h2 class="editorial-title">Frequently Asked Questions</h2>
-
-          <div class="accordion-container">
-            <details class="detail-item">
-              <summary>
-                What time do I need to arrive?
-                <span class="accordion-icon">+</span>
-              </summary>
-              <div class="detail-content">
-                <div class="detail-inner">
-                  <p class="faq-text">
-                    The entourage procession will strictly start at
-                    <strong>4:00 PM</strong>. Please arrive at least thirty (30)
-                    minutes early to allow for traffic. As tradition goes, the
-                    Bride will be the last to arrive.
-                  </p>
-                </div>
+      <section id="rsvp" class="reveal">
+        <div class="container">
+          <h2 class="section-title">RSVP</h2>
+          <p class="section-lead">
+            Please respond on or before <strong>November 27, 2026</strong>.
+          </p>
+          <div class="rsvp-layout">
+            <article class="card">
+              <img src="assets/images/proposal-1.png" alt="The proposal" />
+              <div class="card-content">
+                Invitation is strictly for the named guest only. Thank you for
+                understanding.
               </div>
+            </article>
+
+            <article class="card">
+              <div class="card-content">
+                <form id="rsvp-form" class="form">
+                  <div>
+                    <label for="full-name">Full Name</label>
+                    <input
+                      id="full-name"
+                      name="Full Name"
+                      required
+                      placeholder="e.g. Juan Dela Cruz"
+                    />
+                  </div>
+
+                  <div>
+                    <label>Will you attend?</label>
+                    <div class="attend">
+                      <label><input type="radio" name="Attendance" value="Yes" required /> Joyfully Attend</label>
+                      <label><input type="radio" name="Attendance" value="No" /> Regretfully Decline</label>
+                    </div>
+                  </div>
+
+                  <div>
+                    <label for="notes">Notes and Requests</label>
+                    <textarea
+                      id="notes"
+                      name="Notes"
+                      placeholder="Dietary restrictions, song requests, or a message..."
+                    ></textarea>
+                  </div>
+
+                  <button class="btn" id="submit-btn" type="submit">
+                    Confirm RSVP
+                  </button>
+                  <p id="form-message" aria-live="polite"></p>
+                </form>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section id="faq" class="reveal">
+        <div class="container">
+          <h2 class="section-title">Frequently Asked Questions</h2>
+          <div class="faq-list">
+            <details>
+              <summary>What time should I arrive?</summary>
+              <p>
+                Please arrive at least 30 minutes before 4:00 PM to account for
+                traffic and parking.
+              </p>
             </details>
-
-            <details class="detail-item">
-              <summary>
-                What time will the program start?
-                <span class="accordion-icon">+</span>
-              </summary>
-              <div class="detail-content">
-                <div class="detail-inner">
-                  <p class="faq-text">
-                    There will be a pre-program at 5:00 PM with appetizers and
-                    refreshments. The main program will start promptly at 6:00
-                    PM.
-                  </p>
-                </div>
-              </div>
+            <details>
+              <summary>Can I bring a plus one?</summary>
+              <p>
+                We can only accommodate the guest named in the invitation due to
+                limited seating.
+              </p>
             </details>
-
-            <details class="detail-item">
-              <summary>
-                Can I bring a guest / date?
-                <span class="accordion-icon">+</span>
-              </summary>
-              <div class="detail-content">
-                <div class="detail-inner">
-                  <p class="faq-text">
-                    We regret to inform you that we are unable to accommodate
-                    additional guests. Each seat has been thoughtfully assigned
-                    to a specific guest on our list.
-                  </p>
-                </div>
-              </div>
+            <details>
+              <summary>Can we take photos during the ceremony?</summary>
+              <p>
+                We request a camera-free ceremony. You can freely take photos at
+                the reception.
+              </p>
             </details>
-
-            <details class="detail-item">
-              <summary>
-                What should I wear? <span class="accordion-icon">+</span>
-              </summary>
-              <div class="detail-content">
-                <div class="detail-inner">
-                  <p class="faq-text">
-                    The dress code is <strong>Semi-Formal to Casual</strong>.
-                    Kindly refer to the color palette in the Details section. We
-                    respectfully request NO jeans, slippers, or white attire.
-                  </p>
-                </div>
-              </div>
-            </details>
-
-            <details class="detail-item">
-              <summary>
-                Are kids allowed? <span class="accordion-icon">+</span>
-              </summary>
-              <div class="detail-content">
-                <div class="detail-inner">
-                  <p class="faq-text">
-                    Only children who are part of the entourage are in
-                    attendance. We are unable to accommodate other children at
-                    our celebration.
-                  </p>
-                </div>
-              </div>
-            </details>
-
-            <details class="detail-item">
-              <summary>
-                Can we take photos/videos? <span class="accordion-icon">+</span>
-              </summary>
-              <div class="detail-content">
-                <div class="detail-inner">
-                  <p class="faq-text">
-                    Please keep our ceremony <strong>CAMERA-FREE</strong>. We
-                    have a professional team for this. Once we finish our first
-                    kiss, you are free to take shots at the reception!
-                  </p>
-                </div>
-              </div>
-            </details>
-
-            <details class="detail-item">
-              <summary>
-                Can we sit anywhere? <span class="accordion-icon">+</span>
-              </summary>
-              <div class="detail-content">
-                <div class="detail-inner">
-                  <p class="faq-text">
-                    We have a carefully arranged seating plan. Our coordinator
-                    will assist you in finding your designated seat upon
-                    arrival.
-                  </p>
-                </div>
-              </div>
-            </details>
-
-            <details class="detail-item">
-              <summary>
-                Do you have a gift preference?
-                <span class="accordion-icon">+</span>
-              </summary>
-              <div class="detail-content">
-                <div class="detail-inner">
-                  <p class="faq-text">
-                    Your presence is the greatest gift. Should you wish to give
-                    something more, a cash gift would be honored as we save for
-                    our future together.
-                  </p>
-                </div>
-              </div>
-            </details>
-
-            <details class="detail-item">
-              <summary>
-                RSVP Deadlines & Late Responses
-                <span class="accordion-icon">+</span>
-              </summary>
-              <div class="detail-content">
-                <div class="detail-inner">
-                  <p class="faq-text">
-                    The latest we can accept responses is
-                    <strong>November 27, 2026</strong>. If we do not receive
-                    your RSVP by this date, we will be unable to accommodate
-                    your attendance as final counts must be submitted to the
-                    venue.
-                  </p>
-                </div>
-              </div>
+            <details>
+              <summary>Do you have a gift preference?</summary>
+              <p>
+                Your presence is the greatest gift. If you wish to bless us
+                further, a cash gift would be deeply appreciated.
+              </p>
             </details>
           </div>
         </div>
       </section>
     </main>
+
+    <button
+      id="music-control"
+      class="music-control"
+      type="button"
+      aria-label="Toggle background music"
+    >
+      ♫
+    </button>
+
     <footer class="site-footer">
-      <div class="container-narrow">
-        <div class="footer-content">
-          <p class="footer-initials">Reginwell & CJ</p>
-          <p class="footer-date">January 04, 2027</p>
-          <div class="footer-divider"></div>
-          <p class="footer-credit">Love love love</p>
-        </div>
-      </div>
+      <p>Reginwell & CJ • January 4, 2027</p>
     </footer>
-    <script src="script.js"></script>
+
+    <script>
+      const menuBtn = document.getElementById("menu-btn");
+      const navLinks = document.getElementById("nav-links");
+      const navLinkItems = navLinks.querySelectorAll("a");
+      menuBtn.addEventListener("click", () => navLinks.classList.toggle("open"));
+      navLinkItems.forEach((link) =>
+        link.addEventListener("click", () => navLinks.classList.remove("open")),
+      );
+
+      const progressBar = document.getElementById("scroll-progress");
+      const updateScrollProgress = () => {
+        const total = document.documentElement.scrollHeight - window.innerHeight;
+        const ratio = total > 0 ? window.scrollY / total : 0;
+        progressBar.style.transform = "scaleX(" + ratio + ")";
+      };
+      updateScrollProgress();
+      window.addEventListener("scroll", updateScrollProgress, { passive: true });
+
+      const weddingDate = new Date("Jan 4, 2027 00:00:00").getTime();
+      const relationshipStartDate = new Date("Jan 4, 2017 00:00:00").getTime();
+      const totalCountdownSpan = Math.max(weddingDate - relationshipStartDate, 1);
+      const id = (x) => document.getElementById(x);
+      const sandTop = id("sand-top");
+      const sandBottom = id("sand-bottom");
+      const sandStream = id("sand-stream");
+
+      const clamp = (n, min, max) => Math.min(max, Math.max(min, n));
+
+      const updateHourglass = (diff) => {
+        const remainingRatio = clamp(diff / totalCountdownSpan, 0, 1);
+        const filledRatio = 1 - remainingRatio;
+
+        const topHeight = 44 * remainingRatio;
+        const topY = 78 - topHeight;
+        sandTop.setAttribute(
+          "points",
+          "38,34 82,34 60," + Math.round(topY),
+        );
+
+        const bottomHalfWidth = 22 * filledRatio;
+        const bottomTopY = 136;
+        const bottomApexY = 136 + 16 * filledRatio;
+        sandBottom.setAttribute(
+          "points",
+          Math.round(60 - bottomHalfWidth) +
+            "," +
+            bottomTopY +
+            " " +
+            Math.round(60 + bottomHalfWidth) +
+            "," +
+            bottomTopY +
+            " 60," +
+            Math.round(bottomApexY),
+        );
+
+        const pulse = 0.65 + 0.35 * Math.sin(Date.now() / 280);
+        sandStream.style.opacity = diff > 0 ? String(pulse) : "0";
+      };
+
+      const tick = () => {
+        const diff = weddingDate - Date.now();
+        updateHourglass(diff);
+        if (diff <= 0) {
+          id("countdown").innerHTML = "<p>Happily Ever After!</p>";
+          return;
+        }
+        const day = 86400000;
+        const hour = 3600000;
+        const minute = 60000;
+        id("days").textContent = String(Math.floor(diff / day)).padStart(2, "0");
+        id("hours").textContent = String(Math.floor((diff % day) / hour)).padStart(
+          2,
+          "0",
+        );
+        id("minutes").textContent = String(
+          Math.floor((diff % hour) / minute),
+        ).padStart(2, "0");
+        id("seconds").textContent = String(
+          Math.floor((diff % minute) / 1000),
+        ).padStart(2, "0");
+      };
+      tick();
+      setInterval(tick, 1000);
+
+      const bgMusic = document.getElementById("bg-music");
+      const musicControl = document.getElementById("music-control");
+      let playing = false;
+      musicControl.addEventListener("click", () => {
+        if (playing) {
+          bgMusic.pause();
+          musicControl.classList.remove("playing");
+        } else {
+          bgMusic.play();
+          musicControl.classList.add("playing");
+        }
+        playing = !playing;
+      });
+
+      const scriptURL =
+        "https://script.google.com/macros/s/AKfycbxJe-Usnh3DwLf264hvxhQfNf0iQ2482Y46Pgq5u-7lLDiDyBfXTb0u9L96ozthgiUIHQ/exec";
+      const form = document.getElementById("rsvp-form");
+      const submitBtn = document.getElementById("submit-btn");
+      const formMessage = document.getElementById("form-message");
+
+      form.addEventListener("submit", (e) => {
+        e.preventDefault();
+        submitBtn.disabled = true;
+        submitBtn.textContent = "Sending...";
+        fetch(scriptURL, { method: "POST", body: new FormData(form) })
+          .then(() => {
+            formMessage.textContent = "Thank you! Your RSVP has been recorded.";
+            form.reset();
+          })
+          .catch(() => {
+            formMessage.textContent = "Something went wrong. Please try again.";
+          })
+          .finally(() => {
+            submitBtn.disabled = false;
+            submitBtn.textContent = "Confirm RSVP";
+          });
+      });
+
+      const canParallax =
+        !window.matchMedia("(max-width: 860px)").matches &&
+        !window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      if (canParallax) {
+        const layers = document.querySelectorAll("[data-parallax]");
+        let ticking = false;
+        const onScroll = () => {
+          if (ticking) return;
+          ticking = true;
+          requestAnimationFrame(() => {
+            const y = window.scrollY;
+            layers.forEach((el) => {
+              const speed = Number(el.dataset.parallax || 0.12);
+              el.style.transform = "translateY(" + Math.round(y * speed) + "px)";
+            });
+            ticking = false;
+          });
+        };
+        window.addEventListener("scroll", onScroll, { passive: true });
+      }
+
+      const sections = document.querySelectorAll("section[id], header[id]");
+      const activateNav = () => {
+        let current = "home";
+        sections.forEach((sec) => {
+          if (window.scrollY >= sec.offsetTop - 140) current = sec.id;
+        });
+        navLinkItems.forEach((link) => {
+          link.classList.toggle("active", link.getAttribute("href") === "#" + current);
+        });
+      };
+      activateNav();
+      window.addEventListener("scroll", activateNav, { passive: true });
+
+      const revealEls = document.querySelectorAll(".reveal");
+      const revealObserver = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) entry.target.classList.add("is-visible");
+          });
+        },
+        { threshold: 0.12 },
+      );
+      revealEls.forEach((el) => revealObserver.observe(el));
+
+      const carouselRoot = document.querySelector("[data-carousel]");
+      if (carouselRoot) {
+        const track = carouselRoot.querySelector("#carousel-track");
+        const slides = carouselRoot.querySelectorAll(".carousel-slide");
+        const dotsWrap = carouselRoot.querySelector("#carousel-dots");
+        const prevBtn = carouselRoot.querySelector(".carousel-prev");
+        const nextBtn = carouselRoot.querySelector(".carousel-next");
+        const status = carouselRoot.querySelector("#carousel-status");
+        const autoToggle = carouselRoot.querySelector("#carousel-toggle");
+        let slideIndex = 0;
+        const total = slides.length;
+        const reduceMotion = window.matchMedia(
+          "(prefers-reduced-motion: reduce)",
+        ).matches;
+        let autoPlay = !reduceMotion;
+        let autoTimer;
+
+        slides.forEach((_, j) => {
+          const dot = document.createElement("button");
+          dot.type = "button";
+          dot.className = "carousel-dot";
+          dot.setAttribute("aria-label", "Go to slide " + (j + 1));
+          dot.addEventListener("click", () => go(j));
+          dotsWrap.appendChild(dot);
+        });
+
+        const allDots = () => dotsWrap.querySelectorAll(".carousel-dot");
+
+        function go(n) {
+          slideIndex = (n + total) % total;
+          track.style.transform = "translateX(-" + slideIndex * 100 + "%)";
+          allDots().forEach((d, j) => {
+            d.setAttribute("aria-current", j === slideIndex ? "true" : "false");
+          });
+          if (status) status.textContent = "Slide " + (slideIndex + 1) + " of " + total;
+        }
+
+        function restartAutoPlay() {
+          if (autoTimer) clearInterval(autoTimer);
+          if (!autoPlay) return;
+          autoTimer = setInterval(() => go(slideIndex + 1), 4500);
+        }
+
+        prevBtn.addEventListener("click", () => go(slideIndex - 1));
+        nextBtn.addEventListener("click", () => go(slideIndex + 1));
+        prevBtn.addEventListener("click", restartAutoPlay);
+        nextBtn.addEventListener("click", restartAutoPlay);
+
+        let touchStartX = null;
+        carouselRoot
+          .querySelector(".carousel-viewport")
+          .addEventListener(
+            "touchstart",
+            (e) => {
+              touchStartX = e.changedTouches[0].screenX;
+            },
+            { passive: true },
+          );
+        carouselRoot
+          .querySelector(".carousel-viewport")
+          .addEventListener(
+            "touchend",
+            (e) => {
+              if (touchStartX == null) return;
+              const dx = e.changedTouches[0].screenX - touchStartX;
+              touchStartX = null;
+              if (Math.abs(dx) < 50) return;
+              if (dx < 0) go(slideIndex + 1);
+              else go(slideIndex - 1);
+              restartAutoPlay();
+            },
+            { passive: true },
+          );
+
+        carouselRoot.addEventListener("keydown", (e) => {
+          if (e.key === "ArrowLeft") {
+            e.preventDefault();
+            go(slideIndex - 1);
+            restartAutoPlay();
+          } else if (e.key === "ArrowRight") {
+            e.preventDefault();
+            go(slideIndex + 1);
+            restartAutoPlay();
+          }
+        });
+
+        carouselRoot.addEventListener("mouseenter", () => {
+          if (autoTimer) clearInterval(autoTimer);
+        });
+        carouselRoot.addEventListener("mouseleave", restartAutoPlay);
+
+        if (autoToggle) {
+          autoToggle.textContent = autoPlay ? "Pause" : "Play";
+          autoToggle.addEventListener("click", () => {
+            autoPlay = !autoPlay;
+            autoToggle.textContent = autoPlay ? "Pause" : "Play";
+            autoToggle.setAttribute(
+              "aria-label",
+              autoPlay ? "Pause autoplay" : "Resume autoplay",
+            );
+            restartAutoPlay();
+          });
+        }
+
+        prevBtn.tabIndex = 0;
+        nextBtn.tabIndex = 0;
+        go(0);
+        restartAutoPlay();
+      }
+    </script>
   </body>
 </html>
