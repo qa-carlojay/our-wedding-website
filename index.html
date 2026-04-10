@@ -823,97 +823,68 @@
         aspect-ratio: 1.7 / 1;
         position: relative;
         filter: drop-shadow(0 14px 24px rgba(73, 53, 47, 0.22));
+        cursor: pointer;
       }
 
-      .env-back,
-      .env-front,
-      .env-left,
-      .env-right,
-      .env-letter,
-      .env-flap {
+      .env-image,
+      .lid-initials,
+      .env-flowers {
         position: absolute;
       }
 
-      .env-back {
+      .env-image {
         inset: 0;
-        background: #f6ece8;
-        border: 1px solid #ddc9c0;
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        transition: opacity 0.45s ease;
       }
 
-      .env-letter {
-        left: 10%;
-        width: 80%;
-        top: 14%;
-        bottom: 12%;
-        background: linear-gradient(180deg, #fff, #fffaf8);
-        border: 1px solid #eadcd5;
-        transform-origin: bottom center;
-        transition: transform 0.6s ease, opacity 0.45s ease;
-        z-index: 2;
+      .env-image.open {
+        opacity: 0;
       }
 
-      .env-letter::before {
-        content: "R & C";
-        position: absolute;
-        top: 38%;
-        left: 50%;
-        transform: translate(-50%, -50%);
+      .invite-gate.opening .env-image.closed {
+        opacity: 0;
+      }
+
+      .invite-gate.opening .env-image.open {
+        opacity: 1;
+      }
+
+      .lid-initials {
+        top: 12%;
+        right: 24%;
         font-family: "Playfair Display", serif;
-        font-size: clamp(1.1rem, 2vw, 1.45rem);
+        font-size: clamp(1rem, 2.2vw, 1.5rem);
         letter-spacing: 0.08em;
-        color: var(--accent-strong);
+        color: #7a564c;
+        opacity: 0;
+        transition: opacity 0.45s ease 0.2s;
+        text-shadow: 0 1px 0 #fff;
       }
 
-      .env-flap {
-        left: -1px;
-        right: -1px;
-        top: -1px;
-        height: 55%;
-        clip-path: polygon(0 0, 100% 0, 50% 100%);
-        background: linear-gradient(180deg, #f4e6df, #ebd7ce);
-        border: 1px solid #ddc9c0;
-        transform-origin: top center;
-        transition: transform 0.8s cubic-bezier(0.2, 0.9, 0.2, 1);
-        z-index: 4;
+      .invite-gate.opening .lid-initials {
+        opacity: 1;
       }
 
-      .env-front {
-        left: -1px;
-        right: -1px;
-        bottom: -1px;
-        height: 58%;
-        clip-path: polygon(0 0, 50% 70%, 100% 0, 100% 100%, 0 100%);
-        background: #f2e1d9;
-        border: 1px solid #ddc9c0;
-        z-index: 3;
+      .env-flowers {
+        width: min(130px, 22vw);
+        opacity: 0.9;
+        pointer-events: none;
+        filter: drop-shadow(0 8px 14px rgba(86, 58, 50, 0.2));
       }
 
-      .env-left {
-        left: -1px;
-        top: 0;
-        bottom: 0;
-        width: 50%;
-        clip-path: polygon(0 0, 100% 50%, 0 100%);
-        background: #efddd4;
-        z-index: 1;
+      .env-flowers.left {
+        left: -16%;
+        bottom: -4%;
+        transform: rotate(-10deg);
       }
 
-      .env-right {
-        right: -1px;
-        top: 0;
-        bottom: 0;
-        width: 50%;
-        clip-path: polygon(100% 0, 0 50%, 100% 100%);
-        background: #efddd4;
-        z-index: 1;
-      }
-
-      .invite-gate.opening .env-flap {
-        transform: rotateX(175deg);
-      }
-
-      .invite-gate.opening .env-letter {
-        transform: translateY(-22%);
+      .env-flowers.right {
+        right: -16%;
+        top: -2%;
+        transform: rotate(12deg);
       }
 
       .gate-copy {
@@ -929,21 +900,6 @@
         color: var(--muted);
         margin-top: 0.2rem;
         font-size: 0.95rem;
-      }
-
-      .gate-action {
-        margin-top: 1rem;
-      }
-
-      .open-envelope-btn {
-        border: 0;
-        border-radius: 999px;
-        padding: 0.75rem 1.4rem;
-        background: var(--accent-strong);
-        color: #fff;
-        font-weight: 600;
-        letter-spacing: 0.03em;
-        cursor: pointer;
       }
 
       .preview-panel {
@@ -1187,7 +1143,8 @@
           transition: none;
         }
         .env-flap,
-        .env-letter,
+        .env-image,
+        .lid-initials,
         .preview-panel,
         .site-shell {
           transition: none;
@@ -1203,22 +1160,34 @@
     <div class="invite-gate" id="invite-gate">
       <div class="invite-stage">
         <div class="envelope-scene">
-          <div class="envelope" aria-hidden="true">
-            <div class="env-back"></div>
-            <div class="env-left"></div>
-            <div class="env-right"></div>
-            <div class="env-letter"></div>
-            <div class="env-front"></div>
-            <div class="env-flap"></div>
+          <div class="envelope" id="envelope-click-target" role="button" tabindex="0" aria-label="Open envelope">
+            <img
+              class="env-image closed"
+              src="https://openmoji.org/data/color/svg/2709.svg"
+              alt="Closed envelope"
+            />
+            <img
+              class="env-image open"
+              src="https://openmoji.org/data/color/svg/1F4E8.svg"
+              alt="Opened envelope"
+            />
+            <span class="lid-initials">R & C</span>
+            <img
+              class="env-flowers left"
+              src="https://openmoji.org/data/color/svg/1F338.svg"
+              alt=""
+              aria-hidden="true"
+            />
+            <img
+              class="env-flowers right"
+              src="https://openmoji.org/data/color/svg/1F339.svg"
+              alt=""
+              aria-hidden="true"
+            />
           </div>
           <div class="gate-copy">
             <h2 class="gate-title">You are invited</h2>
-            <p class="gate-sub">Tap to open your wedding invitation envelope</p>
-          </div>
-          <div class="gate-action">
-            <button type="button" class="open-envelope-btn" id="open-envelope-btn">
-              Open Envelope
-            </button>
+            <p class="gate-sub">Tap the envelope to open your invitation</p>
           </div>
         </div>
 
@@ -1664,7 +1633,7 @@
 
     <script>
       const gate = document.getElementById("invite-gate");
-      const openEnvelopeBtn = document.getElementById("open-envelope-btn");
+      const envelopeClickTarget = document.getElementById("envelope-click-target");
       const enterInviteBtn = document.getElementById("enter-invite-btn");
       const viewDetailsBtn = document.getElementById("view-details-btn");
       const siteShell = document.getElementById("site-shell");
@@ -1673,13 +1642,21 @@
 
       document.body.style.overflow = "hidden";
 
-      openEnvelopeBtn.addEventListener("click", () => {
+      const openEnvelope = () => {
         if (gateOpened) return;
         gateOpened = true;
         gate.classList.add("opening");
         setTimeout(() => {
           gate.classList.add("show-preview");
         }, 420);
+      };
+
+      envelopeClickTarget.addEventListener("click", openEnvelope);
+      envelopeClickTarget.addEventListener("keydown", (e) => {
+        if (e.key === "Enter" || e.key === " ") {
+          e.preventDefault();
+          openEnvelope();
+        }
       });
 
       viewDetailsBtn.addEventListener("click", () => {
