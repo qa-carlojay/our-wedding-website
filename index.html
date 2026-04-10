@@ -767,6 +767,299 @@
         color: var(--muted);
       }
 
+      .site-shell {
+        opacity: 0;
+        visibility: hidden;
+        pointer-events: none;
+        transform: translateY(16px);
+        transition:
+          opacity 0.55s ease,
+          transform 0.55s ease,
+          visibility 0.55s ease;
+      }
+
+      .site-shell.is-visible {
+        opacity: 1;
+        visibility: visible;
+        pointer-events: auto;
+        transform: translateY(0);
+      }
+
+      .invite-gate {
+        position: fixed;
+        inset: 0;
+        z-index: 120;
+        display: grid;
+        place-items: center;
+        background:
+          radial-gradient(circle at 20% 20%, #fff8f2 0%, #f6ece7 45%, #eee1db 100%);
+        padding: 1.2rem;
+        transition: opacity 0.55s ease, visibility 0.55s ease;
+      }
+
+      .invite-gate.is-hidden {
+        opacity: 0;
+        visibility: hidden;
+        pointer-events: none;
+      }
+
+      .invite-stage {
+        width: min(640px, 96vw);
+        border-radius: 24px;
+        background: #fff;
+        border: 1px solid #e5d7d1;
+        box-shadow: 0 26px 48px rgba(73, 53, 47, 0.2);
+        overflow: hidden;
+      }
+
+      .envelope-scene {
+        padding: 2rem 1.2rem 1.3rem;
+        text-align: center;
+      }
+
+      .envelope {
+        width: min(440px, 82vw);
+        margin: 0 auto;
+        aspect-ratio: 1.7 / 1;
+        position: relative;
+        filter: drop-shadow(0 14px 24px rgba(73, 53, 47, 0.22));
+      }
+
+      .env-back,
+      .env-front,
+      .env-left,
+      .env-right,
+      .env-letter,
+      .env-flap {
+        position: absolute;
+      }
+
+      .env-back {
+        inset: 0;
+        background: #f6ece8;
+        border: 1px solid #ddc9c0;
+      }
+
+      .env-letter {
+        left: 10%;
+        width: 80%;
+        top: 14%;
+        bottom: 12%;
+        background: linear-gradient(180deg, #fff, #fffaf8);
+        border: 1px solid #eadcd5;
+        transform-origin: bottom center;
+        transition: transform 0.6s ease, opacity 0.45s ease;
+        z-index: 2;
+      }
+
+      .env-letter::before {
+        content: "R & C";
+        position: absolute;
+        top: 38%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        font-family: "Playfair Display", serif;
+        font-size: clamp(1.1rem, 2vw, 1.45rem);
+        letter-spacing: 0.08em;
+        color: var(--accent-strong);
+      }
+
+      .env-flap {
+        left: -1px;
+        right: -1px;
+        top: -1px;
+        height: 55%;
+        clip-path: polygon(0 0, 100% 0, 50% 100%);
+        background: linear-gradient(180deg, #f4e6df, #ebd7ce);
+        border: 1px solid #ddc9c0;
+        transform-origin: top center;
+        transition: transform 0.8s cubic-bezier(0.2, 0.9, 0.2, 1);
+        z-index: 4;
+      }
+
+      .env-front {
+        left: -1px;
+        right: -1px;
+        bottom: -1px;
+        height: 58%;
+        clip-path: polygon(0 0, 50% 70%, 100% 0, 100% 100%, 0 100%);
+        background: #f2e1d9;
+        border: 1px solid #ddc9c0;
+        z-index: 3;
+      }
+
+      .env-left {
+        left: -1px;
+        top: 0;
+        bottom: 0;
+        width: 50%;
+        clip-path: polygon(0 0, 100% 50%, 0 100%);
+        background: #efddd4;
+        z-index: 1;
+      }
+
+      .env-right {
+        right: -1px;
+        top: 0;
+        bottom: 0;
+        width: 50%;
+        clip-path: polygon(100% 0, 0 50%, 100% 100%);
+        background: #efddd4;
+        z-index: 1;
+      }
+
+      .invite-gate.opening .env-flap {
+        transform: rotateX(175deg);
+      }
+
+      .invite-gate.opening .env-letter {
+        transform: translateY(-22%);
+      }
+
+      .gate-copy {
+        margin-top: 1.15rem;
+      }
+
+      .gate-title {
+        font-family: "Playfair Display", serif;
+        font-size: clamp(1.45rem, 3.5vw, 2rem);
+      }
+
+      .gate-sub {
+        color: var(--muted);
+        margin-top: 0.2rem;
+        font-size: 0.95rem;
+      }
+
+      .gate-action {
+        margin-top: 1rem;
+      }
+
+      .open-envelope-btn {
+        border: 0;
+        border-radius: 999px;
+        padding: 0.75rem 1.4rem;
+        background: var(--accent-strong);
+        color: #fff;
+        font-weight: 600;
+        letter-spacing: 0.03em;
+        cursor: pointer;
+      }
+
+      .preview-panel {
+        opacity: 0;
+        transform: translateY(10px);
+        pointer-events: none;
+        max-height: 0;
+        overflow: hidden;
+        transition:
+          opacity 0.45s ease,
+          transform 0.45s ease,
+          max-height 0.45s ease;
+        background: linear-gradient(180deg, #fff, #fbf2ee);
+        border-top: 1px solid #edddd6;
+      }
+
+      .invite-gate.show-preview .preview-panel {
+        opacity: 1;
+        transform: translateY(0);
+        pointer-events: auto;
+        max-height: 500px;
+      }
+
+      .preview-inner {
+        padding: 1.3rem 1.2rem 1.5rem;
+      }
+
+      .preview-heading {
+        font-family: "Playfair Display", serif;
+        font-size: clamp(1.2rem, 3.2vw, 1.8rem);
+      }
+
+      .preview-meta {
+        margin-top: 0.55rem;
+        color: var(--muted);
+      }
+
+      .preview-details {
+        margin-top: 0.9rem;
+        border: 1px dashed #dbc7be;
+        border-radius: 12px;
+        padding: 0.8rem;
+        background: #fff;
+      }
+
+      .preview-details b {
+        font-family: "Playfair Display", serif;
+      }
+
+      .preview-actions {
+        margin-top: 1rem;
+        display: flex;
+        gap: 0.75rem;
+        flex-wrap: wrap;
+        align-items: center;
+      }
+
+      .preview-extra {
+        max-height: 0;
+        overflow: hidden;
+        opacity: 0;
+        transform: translateY(8px);
+        transition:
+          max-height 0.35s ease,
+          opacity 0.35s ease,
+          transform 0.35s ease;
+      }
+
+      .preview-panel.show-extra .preview-extra {
+        max-height: 220px;
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      .preview-link {
+        border: 1px solid #d8c2b8;
+        background: #fff;
+        border-radius: 999px;
+        padding: 0.55rem 1rem;
+        color: var(--text);
+        cursor: pointer;
+      }
+
+      .rsvp-ribbon {
+        position: relative;
+        border: 0;
+        background: linear-gradient(90deg, #9b7568, #b28879);
+        color: #fff;
+        padding: 0.62rem 1.35rem;
+        font-weight: 700;
+        letter-spacing: 0.04em;
+        cursor: pointer;
+      }
+
+      .rsvp-ribbon::before,
+      .rsvp-ribbon::after {
+        content: "";
+        position: absolute;
+        top: 50%;
+        width: 0;
+        height: 0;
+        transform: translateY(-50%);
+        border-top: 13px solid transparent;
+        border-bottom: 13px solid transparent;
+      }
+
+      .rsvp-ribbon::before {
+        left: -16px;
+        border-right: 16px solid #9b7568;
+      }
+
+      .rsvp-ribbon::after {
+        right: -16px;
+        border-left: 16px solid #b28879;
+      }
+
       @keyframes driftGlow {
         0% {
           transform: translate3d(-1%, 0, 0) scale(1);
@@ -893,16 +1186,73 @@
           transform: none;
           transition: none;
         }
+        .env-flap,
+        .env-letter,
+        .preview-panel,
+        .site-shell {
+          transition: none;
+        }
       }
     </style>
   </head>
   <body>
-    <div class="scroll-progress" id="scroll-progress"></div>
     <audio id="bg-music" loop>
       <source src="assets/music/celeste-tothapi.mp3" type="audio/mpeg" />
     </audio>
 
-    <nav class="site-nav">
+    <div class="invite-gate" id="invite-gate">
+      <div class="invite-stage">
+        <div class="envelope-scene">
+          <div class="envelope" aria-hidden="true">
+            <div class="env-back"></div>
+            <div class="env-left"></div>
+            <div class="env-right"></div>
+            <div class="env-letter"></div>
+            <div class="env-front"></div>
+            <div class="env-flap"></div>
+          </div>
+          <div class="gate-copy">
+            <h2 class="gate-title">You are invited</h2>
+            <p class="gate-sub">Tap to open your wedding invitation envelope</p>
+          </div>
+          <div class="gate-action">
+            <button type="button" class="open-envelope-btn" id="open-envelope-btn">
+              Open Envelope
+            </button>
+          </div>
+        </div>
+
+        <div class="preview-panel" id="preview-panel">
+          <div class="preview-inner">
+            <h3 class="preview-heading">Reginwell & CJ</h3>
+            <p class="preview-meta">January 4, 2027 • Fruella, Tagaytay</p>
+            <div class="preview-details">
+              <p><b>Ceremony:</b> 4:00 PM at The Garden</p>
+              <p><b>Reception:</b> 6:00 PM at The Pavilion</p>
+            </div>
+            <div class="preview-actions">
+              <button type="button" class="preview-link" id="view-details-btn">
+                View details
+              </button>
+              <button type="button" class="rsvp-ribbon" id="enter-invite-btn">
+                Click to RSVP
+              </button>
+            </div>
+            <div class="preview-extra" id="preview-extra">
+              <div class="preview-details" style="margin-top: 0.75rem">
+                <p><b>Dress code:</b> Semi-formal to smart casual</p>
+                <p><b>Note:</b> Invitation is for named guest only</p>
+                <p><b>Map:</b> Fruella's Events Venue, Tagaytay</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="site-shell" id="site-shell">
+      <div class="scroll-progress" id="scroll-progress"></div>
+      <nav class="site-nav">
       <div class="container nav-inner">
         <a class="brand" href="#home">
           <img src="assets/images/wedding_favicon.png" alt="C and R logo" />
@@ -1298,20 +1648,56 @@
       </section>
     </main>
 
-    <button
-      id="music-control"
-      class="music-control"
-      type="button"
-      aria-label="Toggle background music"
-    >
-      ♫
-    </button>
+      <button
+        id="music-control"
+        class="music-control"
+        type="button"
+        aria-label="Toggle background music"
+      >
+        ♫
+      </button>
 
-    <footer class="site-footer">
-      <p>Reginwell & CJ • January 4, 2027</p>
-    </footer>
+      <footer class="site-footer">
+        <p>Reginwell & CJ • January 4, 2027</p>
+      </footer>
+    </div>
 
     <script>
+      const gate = document.getElementById("invite-gate");
+      const openEnvelopeBtn = document.getElementById("open-envelope-btn");
+      const enterInviteBtn = document.getElementById("enter-invite-btn");
+      const viewDetailsBtn = document.getElementById("view-details-btn");
+      const siteShell = document.getElementById("site-shell");
+      const previewPanel = document.getElementById("preview-panel");
+      let gateOpened = false;
+
+      document.body.style.overflow = "hidden";
+
+      openEnvelopeBtn.addEventListener("click", () => {
+        if (gateOpened) return;
+        gateOpened = true;
+        gate.classList.add("opening");
+        setTimeout(() => {
+          gate.classList.add("show-preview");
+        }, 420);
+      });
+
+      viewDetailsBtn.addEventListener("click", () => {
+        previewPanel.classList.toggle("show-extra");
+        viewDetailsBtn.textContent = previewPanel.classList.contains("show-extra")
+          ? "Hide details"
+          : "View details";
+      });
+
+      enterInviteBtn.addEventListener("click", () => {
+        gate.classList.add("is-hidden");
+        siteShell.classList.add("is-visible");
+        document.body.style.overflow = "";
+        setTimeout(() => {
+          window.scrollTo({ top: 0, behavior: "smooth" });
+        }, 80);
+      });
+
       const menuBtn = document.getElementById("menu-btn");
       const navLinks = document.getElementById("nav-links");
       const navLinkItems = navLinks.querySelectorAll("a");
